@@ -6,6 +6,9 @@
   /* Shared content container: every section lines up to this width */
   --container-max: 80rem;
   --container-gutter: 2rem;
+  /* Corner radius: small for buttons, medium for cards, boxes and images */
+  --radius-sm: 6px;
+  --radius-md: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -143,6 +146,7 @@ nav {
   justify-content: center;
   padding: 0.2rem;
   width: 10rem;
+  border-radius: var(--radius-sm);
 }
 
 .navigationButton:hover {
@@ -163,13 +167,19 @@ a:link,
 a:visited {
   color: #3d2b1a;
   text-decoration: underline;
-  text-underline-offset: 1px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
 a:hover {
   color: #8b6340;
   text-decoration: underline;
   text-decoration-thickness: 2px;
+}
+
+/* <u> inside a link draws its own underline; match the link's thickness */
+a u {
+  text-decoration-thickness: inherit;
 }
 
 .navigationButton a:link,
@@ -188,6 +198,7 @@ a.caseStudyLink,
   display: inline-block;
   padding: 0.5rem 1.2rem;
   border: 1px solid #3d2b1a;
+  border-radius: var(--radius-sm);
   background-color: #f5f0eb;
   color: #1a1208;
   text-decoration: none;
@@ -209,6 +220,7 @@ a.backToTop {
   z-index: 200;
   padding: 0.5rem 1rem;
   border: 1px solid #3d2b1a;
+  border-radius: var(--radius-sm);
   background-color: #f5f0eb;
   color: #1a1208;
   text-decoration: none;
@@ -221,6 +233,27 @@ a.backToTop:hover {
   background-color: #3d2b1a;
   color: #f5f0eb;
   text-decoration: none;
+}
+
+/* ==========================================================================
+   Keyboard focus
+   ========================================================================== */
+
+a:focus-visible {
+  outline: 2px solid #3d2b1a;
+  outline-offset: 2px;
+}
+
+/* Nav: ring around the whole bordered button, not just the link text */
+@supports selector(:has(a)) {
+  .navigationButton:has(a:focus-visible) {
+    outline: 2px solid #3d2b1a;
+    outline-offset: 2px;
+  }
+
+  .navigationButton a:focus-visible {
+    outline: none;
+  }
 }
 
 /* ==========================================================================
@@ -239,6 +272,7 @@ a.backToTop:hover {
 .caseStudyCard {
   background-color: #e0d5c5;
   border: 1px solid #6b4a2a;
+  border-radius: var(--radius-md);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -257,13 +291,15 @@ a.backToTop:hover {
   color: #8b6340;
   margin-bottom: 1rem;
   box-sizing: border-box;
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .caseStudyImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 .caseStudyTitle {
@@ -303,7 +339,7 @@ a.backToTop:hover {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 .aboutContent {
@@ -353,6 +389,8 @@ a.backToTop:hover {
 }
 
 .csTitle {
+  /* Block instead of the h2 flex layout, so <br /> and inline <span>s flow as normal text */
+  display: block;
   font-size: 1.8rem;
   letter-spacing: 1px;
   margin: 0 0 0.75rem 0;
@@ -458,7 +496,7 @@ a.backToTop:hover {
 
 .requirementBox {
   border: 2px solid #6b4a2a;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   padding: 1rem 1.5rem;
   text-align: center;
   background-color: #e0d5c5;
@@ -483,7 +521,7 @@ a.backToTop:hover {
   align-items: center;
   justify-content: center;
   border: 2px solid #6b4a2a;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   padding: 0.5rem;
   text-align: center;
   background-color: #e0d5c5;
@@ -527,6 +565,7 @@ a.backToTop:hover {
   justify-content: center;
   text-align: center;
   border: 1px dashed #8b6340;
+  border-radius: var(--radius-md);
   color: #8b6340;
   max-width: 900px;
   margin: 1.5rem auto;
@@ -537,7 +576,7 @@ a.backToTop:hover {
   width: 100%;
   max-width: 900px;
   margin: 1.5rem auto;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   display: block;
 }
 
@@ -553,7 +592,7 @@ a.backToTop:hover {
 .imageGrid img {
   width: 100%;
   display: block;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 .imageRow {
@@ -567,7 +606,7 @@ a.backToTop:hover {
 
 .imageRow img {
   width: calc(50% - 0.5rem);
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 .videoRow img,
@@ -577,8 +616,12 @@ a.backToTop:hover {
   height: 500px;
   margin: 0;
   border: 0;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   object-fit: cover;
+}
+
+iframe.case-image {
+  border: 0;
 }
 
 .sideBySideImages {
@@ -591,7 +634,7 @@ a.backToTop:hover {
 
 .sideBySideImages > img {
   width: 50%;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   object-fit: cover;
 }
 
@@ -604,7 +647,7 @@ a.backToTop:hover {
 
 .imageColumn img {
   width: 100%;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 /* ==========================================================================
