@@ -475,7 +475,9 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.4em;
-  padding: 0.6rem 1.2rem;
+  /* Fixed size, so the buttons don't grow with the hero text on phones */
+  font-size: 1rem;
+  padding: 0.45rem 0.9rem;
   border: 1px solid #3d2b1a;
   border-radius: var(--radius-sm);
   background-color: #f5f0eb;
@@ -506,6 +508,14 @@ a:focus-visible {
 .home a.heroButtonPrimary:hover {
   border-color: var(--color-accent-hover);
   background-color: var(--color-accent-hover);
+}
+
+/* 44px minimum touch target on phones and touchscreens */
+@media only screen and (max-width: 767px), (pointer: coarse) {
+  .home a.heroButton {
+    min-height: 2.75rem;
+    box-sizing: border-box;
+  }
 }
 
 /* LinkedIn and email: quiet text links, wrap onto two lines when narrow */
