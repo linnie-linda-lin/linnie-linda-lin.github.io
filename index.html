@@ -3,12 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&display=swap"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <title>Linnie</title>
   </head>
-  <body>
+  <body class="home">
     <header>
-      <h1>Lin Wei Lam</h1>
+      <p class="siteName">Lin Wei Lam</p>
     </header>
     <nav>
       <span class="navigationBar">
@@ -23,7 +29,6 @@
         </span>
       </span>
     </nav>
-    <br />
     <main>
       <section>
         <article class="profileBox">
@@ -35,21 +40,67 @@
               />
             </div>
             <div class="aboutContent">
-              <h2>Hi, I'm Lin – UX &amp; Interaction Designer based in Oslo</h2>
-              <p>
-                I'm passionate about creating accessible, intuitive experiences
-                that actually work for people
+              <hgroup>
+                <h1 class="heroTitle">Hi, I'm Lin</h1>
+                <p class="heroSubtitle">
+                  UX &amp; Interaction Designer based in Oslo
+                </p>
+              </hgroup>
+              <p class="heroIntro">
+                I love learning, finding the fun in what I do and asking why.
+                It's what drives me to create accessible, intuitive experiences
+                that actually work for people.
               </p>
-              <p>
+              <p class="heroStatus">
                 Interaction Design student at Fagskolen Kristiania | Open to
                 part-time roles and internships
               </p>
-              <p>
+              <div class="heroActions">
+                <a class="heroButton heroButtonPrimary" href="#case-studies"
+                  >View my work</a
+                >
+                <a class="heroButton" href="Assets/Lin-Wei-Lam-ENG-CV.pdf">
+                  <svg
+                    class="inlineIcon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19h14"
+                    /></svg
+                  ><span>Download CV (EN)</span>
+                </a>
+                <a class="heroButton" href="Assets/Lin-Wei-Lam-NOR-CV.pdf">
+                  <svg
+                    class="inlineIcon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19h14"
+                    /></svg
+                  ><span>Download CV (NO)</span>
+                </a>
+              </div>
+              <p class="heroLinks" id="contact">
                 <a href="https://www.linkedin.com/in/lin-wei-lam-8305331aa/">
                   <svg
                     class="linkedinIcon"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
+                    focusable="false"
                   >
                     <path
                       fill="#0A66C2"
@@ -57,26 +108,39 @@
                     /></svg
                   ><span>Let's connect on LinkedIn</span>
                 </a>
-              </p>
-              <div id="contact">
-                <p>
-                  <span aria-hidden="true">📨</span>
-                  <a href="mailto:maker.lin.lam@gmail.com"
-                    >maker.lin.lam@gmail.com</a
+                <a href="mailto:maker.lin.lam@gmail.com">
+                  <svg
+                    class="inlineIcon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
                   >
-                </p>
-              </div>
-              <p>
-                <span aria-hidden="true">📄</span>
-                <a href="Assets/Lin-Wei-Lam-ENG-CV.pdf">Download CV (EN)</a>
-                &nbsp;<span aria-hidden="true">|</span>&nbsp;
-                <a href="Assets/Lin-Wei-Lam-NOR-CV.pdf">Download CV (NO)</a>
+                    <rect
+                      x="3"
+                      y="5"
+                      width="18"
+                      height="14"
+                      rx="2"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m3 7 9 6 9-6"
+                    /></svg
+                  ><span>maker.lin.lam@gmail.com</span>
+                </a>
               </p>
             </div>
           </div>
         </article>
       </section>
-      <h3 class="subHeadings" id="case-studies">CASE STUDIES</h3>
+      <h2 class="subHeadings" id="case-studies">CASE STUDIES</h2>
       <section>
         <div class="caseStudyGrid container">
           <article class="caseStudyCard">
@@ -119,7 +183,7 @@
           </article>
         </div>
       </section>
-      <h3 class="subHeadings" id="about-me">ABOUT ME</h3>
+      <h2 class="subHeadings" id="about-me">ABOUT ME</h2>
       <section>
         <div class="aboutSingle aboutWide container">
           <div class="aboutImage">

@@ -9,6 +9,11 @@
   /* Corner radius: small for buttons, medium for cards, boxes and images */
   --radius-sm: 6px;
   --radius-md: 10px;
+  /* Terracotta accent, used sparingly (primary button, small details) */
+  --color-accent: #9a4426;
+  --color-accent-hover: #7a3520;
+  /* Heading font (all pages); falls back to system sans-serifs */
+  --font-heading: "Bricolage Grotesque", "Trebuchet MS", Arial, sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -65,9 +70,24 @@ footer {
   margin-right: 0.4em;
 }
 
+/* Line icons (download, envelope) drawn in the link's text colour */
+.inlineIcon {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.15em;
+  margin-right: 0.4em;
+}
+
 /* ==========================================================================
    Headings
    ========================================================================== */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}
 
 h1 {
   background-color: #ede5d8;
@@ -112,8 +132,36 @@ h4 {
   margin-top: 0;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   /* Keep the heading visible below the sticky nav when jumped to */
   scroll-margin-top: 5rem;
+}
+
+/* Short terracotta underline under section headings */
+.subHeadings::after {
+  content: "";
+  width: 2.5rem;
+  height: 3px;
+  margin-top: 0.2rem;
+  border-radius: 2px;
+  background-color: var(--color-accent);
+}
+
+/* Site name in the header, same size on every page (a <p> on the front page,
+   the <h1> on case study pages) */
+.siteName,
+header h1 {
+  margin: 0;
+  padding: 1rem;
+  display: block;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
 }
 
 /* ==========================================================================
@@ -364,6 +412,115 @@ a:focus-visible {
 }
 
 /* ==========================================================================
+   Index page — header name & hero (scoped to <body class="home">)
+   ========================================================================== */
+
+/* Photo narrower and text vertically centred: less empty space below */
+.home .profileInnerBox {
+  align-items: center;
+  padding-block: 1.5rem 2rem;
+}
+
+.home .profileInnerBox .aboutImage {
+  flex: 0 0 26%;
+  max-width: 20rem;
+}
+
+.home hgroup {
+  margin-bottom: 1rem;
+}
+
+/* Reset the global boxed h1 look */
+.home .heroTitle {
+  background-color: transparent;
+  display: block;
+  padding: 0;
+  margin: 0 0 0.35rem;
+  letter-spacing: normal;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.home .heroSubtitle {
+  margin: 0;
+  color: #3d2b1a;
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  font-weight: 500;
+}
+
+.home .heroIntro,
+.home .heroStatus {
+  margin: 0 0 0.75rem;
+}
+
+/* Line length limit for the intro text only */
+.home .heroIntro {
+  max-width: 65ch;
+  font-size: 1.2rem;
+  line-height: 1.55;
+}
+
+.home .heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 1.5rem;
+}
+
+/* Secondary button: same look as "View case study" */
+.home a.heroButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #3d2b1a;
+  border-radius: var(--radius-sm);
+  background-color: #f5f0eb;
+  color: #1a1208;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.home a.heroButton:hover {
+  background-color: #3d2b1a;
+  color: #f5f0eb;
+}
+
+.home a.heroButton .inlineIcon {
+  margin-right: 0;
+}
+
+/* Primary button: cream on terracotta = 5.74:1, hover 7.87:1 */
+.home a.heroButtonPrimary {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: #f5f0eb;
+  font-weight: bold;
+}
+
+.home a.heroButtonPrimary:hover {
+  border-color: var(--color-accent-hover);
+  background-color: var(--color-accent-hover);
+}
+
+/* LinkedIn and email: quiet text links, wrap onto two lines when narrow */
+.home .heroLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+}
+
+.home .subHeadings {
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
    Case study page — structure & hero
    ========================================================================== */
 
@@ -477,6 +634,7 @@ a:focus-visible {
 }
 
 .csSubTitle {
+  font-family: var(--font-heading);
   font-weight: bold;
   font-size: 1.1rem;
   margin: 0 0 0.5rem 0;
@@ -675,6 +833,11 @@ iframe.case-image {
     white-space: normal;
   }
 
+  /* Hero photo a bit wider, so it doesn't shrink too far on tablets */
+  .home .profileInnerBox .aboutImage {
+    flex-basis: 36%;
+  }
+
   /* Case study page */
 
   .videoRow img,
@@ -754,6 +917,29 @@ iframe.case-image {
 
   .aboutContent h2 {
     padding-left: 0;
+  }
+
+  .siteName,
+  header h1 {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  /* Stacked hero: small photo so "Hi, I'm Lin" is visible sooner */
+  .home .profileInnerBox {
+    align-items: stretch;
+    gap: 1.25rem;
+    padding-block: 1.25rem 2rem;
+  }
+
+  .home .profileInnerBox .aboutImage {
+    flex: none;
+    width: 100%;
+    max-width: 14rem;
+  }
+
+  .home .heroIntro {
+    font-size: 1.15rem;
   }
 
   /* Case study page */
@@ -843,6 +1029,11 @@ iframe.case-image {
 
   .caseStudyCard {
     padding: 1rem;
+  }
+
+  /* Full-width, easy-to-tap buttons on small phones */
+  .home a.heroButton {
+    flex: 1 1 100%;
   }
 
   .caseStudyImage {
