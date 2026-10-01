@@ -32,6 +32,11 @@ body {
   min-height: 100vh;
 }
 
+/* Space between the page content and the footer */
+main {
+  padding-bottom: 1.5rem;
+}
+
 /* One centered container with equal side margins, used by every section */
 .container {
   width: 100%;
@@ -63,14 +68,9 @@ footer {
   padding: 2rem;
 }
 
-.linkedinIcon {
-  width: 1.1em;
-  height: 1.1em;
-  vertical-align: -0.15em;
-  margin-right: 0.4em;
-}
-
-/* Line icons (download, envelope) drawn in the link's text colour */
+/* LinkedIn logo, and line icons (download, envelope) drawn in the link's
+   text colour */
+.linkedinIcon,
 .inlineIcon {
   width: 1.1em;
   height: 1.1em;
@@ -84,8 +84,7 @@ footer {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   font-family: var(--font-heading);
 }
 
@@ -115,16 +114,6 @@ h3 {
   text-align: center;
 }
 
-h4 {
-  background-color: #ede5d8;
-  height: 2rem;
-  width: 60%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .subHeadings {
   background-color: #ede5d8;
   font-size: 1.5rem;
@@ -148,6 +137,10 @@ h4 {
   margin-top: 0.2rem;
   border-radius: 2px;
   background-color: var(--color-accent);
+}
+
+.home .subHeadings {
+  margin-bottom: 1rem;
 }
 
 /* Site name in the header, same size on every page (a <p> on the front page,
@@ -240,11 +233,12 @@ a u {
    Button links (must come after the general link styles)
    ========================================================================== */
 
-/* Bordered button style for "View case study" and "Back to all case studies" */
+/* Shared bordered button look: "View case study", "Back to all case studies",
+   "Back to top" and the front page hero buttons */
 a.caseStudyLink,
-.csBackLink a {
-  display: inline-block;
-  padding: 0.5rem 1.2rem;
+.csBackLink a,
+a.backToTop,
+.home a.heroButton {
   border: 1px solid #3d2b1a;
   border-radius: var(--radius-sm);
   background-color: #f5f0eb;
@@ -256,9 +250,17 @@ a.caseStudyLink,
 }
 
 a.caseStudyLink:hover,
-.csBackLink a:hover {
+.csBackLink a:hover,
+a.backToTop:hover,
+.home a.heroButton:hover {
   background-color: #3d2b1a;
   color: #f5f0eb;
+}
+
+a.caseStudyLink,
+.csBackLink a {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
 }
 
 a.backToTop {
@@ -267,20 +269,6 @@ a.backToTop {
   bottom: 1.5rem;
   z-index: 200;
   padding: 0.5rem 1rem;
-  border: 1px solid #3d2b1a;
-  border-radius: var(--radius-sm);
-  background-color: #f5f0eb;
-  color: #1a1208;
-  text-decoration: none;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
-}
-
-a.backToTop:hover {
-  background-color: #3d2b1a;
-  color: #f5f0eb;
-  text-decoration: none;
 }
 
 /* ==========================================================================
@@ -334,8 +322,6 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-width: 1px;
-  border-color: #8b6340;
   color: #8b6340;
   margin-bottom: 1rem;
   box-sizing: border-box;
@@ -469,7 +455,8 @@ a:focus-visible {
   margin: 1.25rem 0 1.5rem;
 }
 
-/* Secondary button: same look as "View case study" */
+/* Secondary button: same look as "View case study" (colours and border are
+   in the shared button rule above) */
 .home a.heroButton {
   display: inline-flex;
   align-items: center;
@@ -478,19 +465,6 @@ a:focus-visible {
   /* Fixed size, so the buttons don't grow with the hero text on phones */
   font-size: 1rem;
   padding: 0.45rem 0.9rem;
-  border: 1px solid #3d2b1a;
-  border-radius: var(--radius-sm);
-  background-color: #f5f0eb;
-  color: #1a1208;
-  text-decoration: none;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
-}
-
-.home a.heroButton:hover {
-  background-color: #3d2b1a;
-  color: #f5f0eb;
 }
 
 .home a.heroButton .inlineIcon {
@@ -524,10 +498,6 @@ a:focus-visible {
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
   margin: 0;
-}
-
-.home .subHeadings {
-  margin-bottom: 1rem;
 }
 
 /* ==========================================================================
@@ -595,8 +565,6 @@ a:focus-visible {
 }
 
 .csMetaWide {
-  grid-template-columns: repeat(2, auto);
-  justify-content: center;
   column-gap: 3rem;
 }
 
@@ -643,11 +611,21 @@ a:focus-visible {
   margin-bottom: 0;
 }
 
+/* Extra space above a subsection that follows images */
+.csSubsectionSpaced {
+  margin-top: 2.5rem;
+}
+
 .csSubTitle {
   font-family: var(--font-heading);
   font-weight: bold;
   font-size: 1.1rem;
   margin: 0 0 0.5rem 0;
+}
+
+/* Bullet list with one empty line between items */
+.csSpacedList li + li {
+  margin-top: 1.5em;
 }
 
 /* ==========================================================================
@@ -724,21 +702,6 @@ a:focus-visible {
 /* ==========================================================================
    Case study page — images
    ========================================================================== */
-
-.csImagePlaceholder {
-  height: 20rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border: 1px dashed #8b6340;
-  border-radius: var(--radius-md);
-  color: #8b6340;
-  max-width: 900px;
-  margin: 1.5rem auto;
-  box-sizing: border-box;
-}
 
 .case-image {
   width: 100%;
@@ -897,6 +860,12 @@ iframe.case-image {
     scroll-margin-top: 4.5rem;
   }
 
+  .siteName,
+  header h1 {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+  }
+
   /* Text content */
 
   ul {
@@ -905,6 +874,15 @@ iframe.case-image {
 
   .profileInnerBox {
     font-size: 1.1rem;
+  }
+
+  /* Buttons */
+
+  a.backToTop {
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
   }
 
   /* Index page */
@@ -927,12 +905,6 @@ iframe.case-image {
 
   .aboutContent h2 {
     padding-left: 0;
-  }
-
-  .siteName,
-  header h1 {
-    padding: 0.75rem 1rem;
-    font-size: 1.1rem;
   }
 
   /* Stacked hero: small photo so "Hi, I'm Lin" is visible sooner */
@@ -1014,13 +986,6 @@ iframe.case-image {
     width: 100%;
     height: 28rem;
   }
-
-  a.backToTop {
-    right: 1rem;
-    bottom: 1rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-  }
 }
 
 /* ==========================================================================
@@ -1028,17 +993,27 @@ iframe.case-image {
    ========================================================================== */
 
 @media only screen and (max-width: 480px) {
+  /* Navigation */
+
   .navigationButton {
     font-size: 0.75rem;
   }
+
+  /* Headings */
 
   h1 {
     font-size: 1.4rem;
     letter-spacing: 0.1rem;
   }
 
+  /* Index page */
+
   .caseStudyCard {
     padding: 1rem;
+  }
+
+  .caseStudyImage {
+    height: 12rem;
   }
 
   /* Full-width, easy-to-tap buttons on small phones */
@@ -1046,9 +1021,7 @@ iframe.case-image {
     flex: 1 1 100%;
   }
 
-  .caseStudyImage {
-    height: 12rem;
-  }
+  /* Case study page */
 
   .csTitle {
     font-size: 1.3rem;
