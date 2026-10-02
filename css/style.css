@@ -588,6 +588,37 @@ a:focus-visible {
   margin-bottom: 0.2rem;
 }
 
+/* Highlighted "My role" box under the meta, same colors as the requirement boxes */
+.csRoleBox {
+  max-width: 640px;
+  margin: 2rem auto 0;
+  padding: 1.25rem 1.5rem;
+  border: 2px solid #6b4a2a;
+  border-radius: var(--radius-md);
+  background-color: #e0d5c5;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* Reset the global h3 background and centering for the box heading */
+.csRoleBox h3 {
+  background-color: transparent;
+  text-align: left;
+}
+
+.csRoleBox ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.csRoleBox li + li {
+  margin-top: 0.5em;
+}
+
+.csRoleBox li::marker {
+  color: #8b6340;
+}
+
 /* ==========================================================================
    Case study page — content
    ========================================================================== */
@@ -944,6 +975,11 @@ iframe.case-image {
 
   .csSingle {
     padding: 0 1rem;
+  }
+
+  .csRoleBox {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
   }
 
   .csTitle {
