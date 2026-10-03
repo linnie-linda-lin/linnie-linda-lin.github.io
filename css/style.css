@@ -52,6 +52,8 @@ main {
 
 header {
   background-color: #ede5d8;
+  /* The site name stays centered; the language switch sits at the right edge */
+  position: relative;
 }
 
 footer {
@@ -66,6 +68,33 @@ footer {
   display: flex;
   justify-content: center;
   padding: 2rem;
+}
+
+/* Language switch (header on bilingual pages) */
+nav.langSwitch {
+  /* Also matches the main nav's sticky bar rules; reset those here */
+  position: absolute;
+  top: 50%;
+  right: var(--container-gutter);
+  transform: translateY(-50%);
+  display: block;
+  z-index: auto;
+  padding: 0;
+  background: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.05rem;
+}
+
+/* Padding gives a comfortable tap target without a visible box */
+.langSwitch a,
+.langSwitch strong {
+  display: inline-block;
+  padding: 0.5rem 0.25rem;
+}
+
+/* The current language is plain text, not a link */
+.langSwitch strong {
+  color: var(--color-accent);
 }
 
 /* LinkedIn logo, and line icons (download, envelope) drawn in the link's
@@ -110,7 +139,6 @@ h2 {
 }
 
 h3 {
-  background-color: #ede5d8;
   text-align: center;
 }
 
@@ -197,7 +225,6 @@ nav {
 
 .navigationButton:hover {
   background-color: #3d2b1a;
-  color: #f5f0eb;
   cursor: pointer;
 }
 
@@ -219,7 +246,6 @@ a:visited {
 
 a:hover {
   color: #8b6340;
-  text-decoration: underline;
   text-decoration-thickness: 2px;
 }
 
@@ -326,8 +352,6 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  color: #8b6340;
   margin-bottom: 1rem;
   box-sizing: border-box;
   border-radius: var(--radius-md);
@@ -383,14 +407,6 @@ a:focus-visible {
 
 .aboutContent {
   flex: 1;
-}
-
-.aboutContent h2 {
-  text-align: left;
-  justify-content: flex-start;
-  padding-left: 1rem;
-  font-size: 1.3rem;
-  white-space: nowrap;
 }
 
 .aboutText {
@@ -833,6 +849,10 @@ main > section + .csSectionBlock {
   display: block;
 }
 
+iframe.case-image {
+  border: 0;
+}
+
 .imageGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -871,10 +891,6 @@ main > section + .csSectionBlock {
   border: 0;
   border-radius: var(--radius-md);
   object-fit: cover;
-}
-
-iframe.case-image {
-  border: 0;
 }
 
 .sideBySideImages {
@@ -922,10 +938,6 @@ iframe.case-image {
 
   .caseStudyImage {
     height: 16rem;
-  }
-
-  .aboutContent h2 {
-    white-space: normal;
   }
 
   /* Hero photo a bit wider, so it doesn't shrink too far on tablets */
@@ -991,6 +1003,26 @@ iframe.case-image {
     font-size: 1.1rem;
   }
 
+  /* Language switch: no room to center the name, so name left and switch right */
+  header:has(.langSwitch) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--container-gutter);
+  }
+
+  header:has(.langSwitch) .siteName,
+  header:has(.langSwitch) h1 {
+    padding: 0.75rem 0;
+    text-align: left;
+  }
+
+  nav.langSwitch {
+    position: static;
+    transform: none;
+    font-size: 0.85rem;
+  }
+
   /* Text content */
 
   ul {
@@ -1026,10 +1058,6 @@ iframe.case-image {
     width: 100%;
     max-width: 24rem;
     margin-inline: auto;
-  }
-
-  .aboutContent h2 {
-    padding-left: 0;
   }
 
   /* Stacked hero: small photo so "Hi, I'm Lin" is visible sooner */
@@ -1154,61 +1182,5 @@ iframe.case-image {
 
   .requirementsGrid {
     grid-template-columns: 1fr;
-  }
-}
-
-/* ==========================================================================
-   Language switch (front page header)
-   ========================================================================== */
-
-/* The site name stays centered; the switch sits at the header's right edge */
-header {
-  position: relative;
-}
-
-nav.langSwitch {
-  /* Also matches the main nav's sticky bar rules; reset those here */
-  position: absolute;
-  top: 50%;
-  right: var(--container-gutter);
-  transform: translateY(-50%);
-  display: block;
-  z-index: auto;
-  padding: 0;
-  background: none;
-  font-size: 0.95rem;
-  letter-spacing: 0.05rem;
-}
-
-/* Padding gives a comfortable tap target without a visible box */
-.langSwitch a,
-.langSwitch strong {
-  display: inline-block;
-  padding: 0.5rem 0.25rem;
-}
-
-/* The current language is plain text, not a link */
-.langSwitch strong {
-  color: var(--color-accent);
-}
-
-/* Phone: no room to center the name, so name left and switch right */
-@media only screen and (max-width: 767px) {
-  .home header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 var(--container-gutter);
-  }
-
-  .home .siteName {
-    padding: 0.75rem 0;
-    text-align: left;
-  }
-
-  nav.langSwitch {
-    position: static;
-    transform: none;
-    font-size: 0.85rem;
   }
 }
