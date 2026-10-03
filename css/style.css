@@ -310,9 +310,9 @@ a:focus-visible {
   margin-bottom: 40px;
 }
 
+/* Borderless soft fill: only buttons get borders, so cards don't look clickable */
 .caseStudyCard {
-  background-color: #e0d5c5;
-  border: 1px solid #6b4a2a;
+  background-color: #ede5d8;
   border-radius: var(--radius-md);
   padding: 1.5rem;
   display: flex;
@@ -400,6 +400,23 @@ a:focus-visible {
 
 .aboutText:last-child {
   margin-bottom: 0;
+}
+
+/* About section: wider photo, shorter lines, so text and collage end level on laptop.
+   Side-by-side layout only; mobile stacks them (see max-width: 767px) */
+@media only screen and (min-width: 768px) {
+  #about-me + section .aboutImage {
+    flex-basis: 34.5%;
+  }
+
+  /* English text is one line longer, so the photo needs a little more width */
+  html[lang="en"] #about-me + section .aboutImage {
+    flex-basis: 36%;
+  }
+
+  #about-me + section .aboutContent {
+    max-width: 75ch;
+  }
 }
 
 /* ==========================================================================
@@ -513,7 +530,9 @@ a:focus-visible {
   padding: 2.5rem 0;
 }
 
-.csSectionBlock + .csSectionBlock {
+/* Divider between sections, and between the hero and the first section */
+.csSectionBlock + .csSectionBlock,
+main > section + .csSectionBlock {
   border-top: 1px solid #c8b9a8;
 }
 
@@ -525,30 +544,74 @@ a:focus-visible {
 .csHero {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  /* Bottom padding matches .csSectionBlock, so the first section is spaced
+     like the others */
+  padding: 2rem 2rem 2.5rem;
   text-align: center;
   box-sizing: border-box;
 }
 
+.csHero > :last-child {
+  margin-bottom: 0;
+}
+
+.csHero hgroup {
+  margin-bottom: 0.75rem;
+}
+
+/* Lighter one-sentence summary under the case title: body font, muted colour,
+   wrapped over two even lines */
+.csLede {
+  max-width: 32em;
+  margin: 0 auto;
+  color: #6b5642;
+  font-size: 1.2rem;
+  font-weight: normal;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+/* Skill tags as soft chips: fill only, no border, so they don't read as buttons.
+   role="list" on the <ul> keeps list semantics in Safari with list-style: none */
+.csChips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.csChips li {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background-color: #ede5d8;
+  color: #5a4636;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+/* Small context line above the case title */
+.csEyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Project name as a large heading, like the front page hero title: resets the
+   global boxed h2 look */
 .csTitle {
-  /* Block instead of the h2 flex layout, so <br /> and inline <span>s flow as normal text */
   display: block;
-  font-size: 1.8rem;
-  letter-spacing: 1px;
-  margin: 0 0 0.75rem 0;
-  width: 48rem;
-  /* Never wider than the hero, so it can't overflow on small screens */
-  max-width: 100%;
-}
-
-.csSubtitle {
-  text-align: center;
-  margin: 0 auto 0.75rem;
-}
-
-.csTags {
-  color: #8b6340;
-  margin: 0 0 1.5rem 0;
+  background-color: transparent;
+  padding: 0;
+  margin: 0 0 0.35rem;
+  letter-spacing: normal;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  line-height: 1.1;
 }
 
 .csBackLink {
@@ -557,66 +620,78 @@ a:focus-visible {
 }
 
 /* ==========================================================================
-   Case study page — meta
+   Case study page — MY ROLE section (key numbers, deliverables, results, meta)
    ========================================================================== */
 
-.csMeta {
+.csSummaryStats {
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  justify-content: center;
-  gap: 1.5rem 4rem;
-  text-align: left;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  list-style: none;
+  padding: 0 0 1.25rem;
+  margin: 0 0 1.25rem;
+  border-bottom: 1px solid #ddd0c1;
+  font-size: 0.9rem;
+  line-height: 1.3;
 }
 
-.csMetaWide {
-  column-gap: 3rem;
+.csSummaryNumber {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--color-accent);
 }
 
-.csMetaItem {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 0;
-}
-
-.csMetaLabel {
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 0.85rem;
-  margin-bottom: 0.2rem;
-}
-
-/* Highlighted "My role" box under the meta, same colors as the requirement boxes */
-.csRoleBox {
-  max-width: 640px;
-  margin: 2rem auto 0;
-  padding: 1.25rem 1.5rem;
-  border: 2px solid #6b4a2a;
-  border-radius: var(--radius-md);
-  background-color: #e0d5c5;
-  text-align: left;
-  box-sizing: border-box;
-}
-
-/* Reset the global h3 background and centering for the box heading */
-.csRoleBox h3 {
-  background-color: transparent;
-  text-align: left;
-}
-
-.csRoleBox ul {
+.csSummaryList {
   margin: 0;
   padding-left: 1.25rem;
+  /* Avoid single words on their own line */
+  text-wrap: pretty;
 }
 
-.csRoleBox li + li {
+.csSummaryList li + li {
   margin-top: 0.5em;
 }
 
-.csRoleBox li::marker {
-  color: #8b6340;
+.csSummaryList li::marker {
+  color: var(--color-accent);
+}
+
+/* "Results" subheading: the case's h4 style in terracotta, with extra space
+   above so the role bullets and the results read as two groups (follows the
+   list, so it wins over the .csSubTitle margin) */
+.csSummaryList + .csSummaryResultsLabel {
+  margin-top: 1.5rem;
+  color: var(--color-accent);
+}
+
+.csSummaryMeta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, max-content));
+  justify-content: space-between;
+  /* Minimum gap only: space-between spreads the columns when there's room.
+     Long values wrap evenly instead of crowding the next column */
+  gap: 1rem 1.5rem;
+  margin: 1.5rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid #ddd0c1;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.csSummaryMeta dt {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.2rem;
+  color: #3d2b1a;
+}
+
+.csSummaryMeta dd {
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -659,29 +734,41 @@ a:focus-visible {
   margin: 0 0 0.5rem 0;
 }
 
-/* Bullet list with one empty line between items */
+/* Findings list: even, modest gap between multi-line items */
 .csSpacedList li + li {
-  margin-top: 1.5em;
+  margin-top: 0.75em;
+}
+
+/* Key statement: larger text with a terracotta left rule. No background or full
+   border, so it doesn't read as a button or card */
+.csCallout {
+  margin: 1.75rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 4px solid var(--color-accent);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 /* ==========================================================================
    Case study page — requirements grid
    ========================================================================== */
 
+/* Full width of the text column, so the boxes line up with the text above */
 .requirementsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  max-width: 600px;
-  margin: 1.5rem auto;
+  margin: 1.5rem 0;
 }
 
+/* Borderless soft fill, like the info cards below */
 .requirementBox {
-  border: 2px solid #6b4a2a;
   border-radius: var(--radius-md);
   padding: 1rem 1.5rem;
   text-align: center;
-  background-color: #e0d5c5;
+  background-color: #ede5d8;
 }
 
 /* ==========================================================================
@@ -702,11 +789,10 @@ a:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid #6b4a2a;
   border-radius: var(--radius-md);
   padding: 0.5rem;
   text-align: center;
-  background-color: #e0d5c5;
+  background-color: #ede5d8;
   min-height: 3rem;
   box-sizing: border-box;
 }
@@ -970,30 +1056,24 @@ iframe.case-image {
   }
 
   .csHero {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 1.75rem;
   }
 
   .csSingle {
     padding: 0 1rem;
   }
 
-  .csRoleBox {
-    margin-top: 1.5rem;
-    padding: 1rem 1.25rem;
+  .csSummaryStats {
+    gap: 0.75rem;
+    font-size: 0.85rem;
   }
 
-  .csTitle {
-    font-size: 1.5rem;
+  .csSummaryNumber {
+    font-size: 2rem;
   }
 
-  .csMeta {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .csMetaItem {
-    align-items: center;
+  .csSummaryMeta {
+    grid-template-columns: 1fr 1fr;
   }
 
   .InfoCardOverview {
@@ -1043,6 +1123,11 @@ iframe.case-image {
     font-size: 0.75rem;
   }
 
+  /* Less side padding so one-word labels like PROSJEKTER keep some room */
+  .navigationButton a {
+    padding: 0.4rem 0.1rem;
+  }
+
   /* Headings */
 
   h1 {
@@ -1067,11 +1152,63 @@ iframe.case-image {
 
   /* Case study page */
 
-  .csTitle {
-    font-size: 1.3rem;
-  }
-
   .requirementsGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Language switch (front page header)
+   ========================================================================== */
+
+/* The site name stays centered; the switch sits at the header's right edge */
+header {
+  position: relative;
+}
+
+nav.langSwitch {
+  /* Also matches the main nav's sticky bar rules; reset those here */
+  position: absolute;
+  top: 50%;
+  right: var(--container-gutter);
+  transform: translateY(-50%);
+  display: block;
+  z-index: auto;
+  padding: 0;
+  background: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.05rem;
+}
+
+/* Padding gives a comfortable tap target without a visible box */
+.langSwitch a,
+.langSwitch strong {
+  display: inline-block;
+  padding: 0.5rem 0.25rem;
+}
+
+/* The current language is plain text, not a link */
+.langSwitch strong {
+  color: var(--color-accent);
+}
+
+/* Phone: no room to center the name, so name left and switch right */
+@media only screen and (max-width: 767px) {
+  .home header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--container-gutter);
+  }
+
+  .home .siteName {
+    padding: 0.75rem 0;
+    text-align: left;
+  }
+
+  nav.langSwitch {
+    position: static;
+    transform: none;
+    font-size: 0.85rem;
   }
 }
