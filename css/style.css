@@ -1,20 +1,39 @@
-/* ==========================================================================
-   Base
-   ========================================================================== */
+/* ===== Design tokens ===== */
 
 :root {
-  /* Shared content container: every section lines up to this width */
-  --container-max: 80rem;
-  --container-gutter: 2rem;
-  /* Corner radius: small for buttons, medium for cards, boxes and images */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  /* Terracotta accent, used sparingly (primary button, small details) */
+  --color-bg: #f5f0eb;
+  --color-surface: #ede5d8;
+  --color-text: #1a1208;
+  --color-text-muted: #6b5642;
+  --color-text-soft: #5a4636;
+  --color-brown: #3d2b1a;
+  --color-brown-light: #8b6340;
+  --color-divider: #c8b9a8;
+  --color-divider-light: #ddd0c1;
+
   --color-accent: #9a4426;
   --color-accent-hover: #7a3520;
-  /* Heading font (all pages); falls back to system sans-serifs */
+
   --font-heading: "Bricolage Grotesque", "Trebuchet MS", Arial, sans-serif;
+
+  --container-max: 80rem;
+  --container-gutter: 2rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+
+  --space-xs: 0.5rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-xxl: 7rem;
+  --space-paragraph: 1.25rem;
+
+  --section-gap: var(--space-xxl);
 }
+
+/* ===== Base ===== */
 
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -23,21 +42,25 @@
 }
 
 body {
-  color: #1a1208;
-  background-color: #f5f0eb;
+  color: var(--color-text);
+  background-color: var(--color-bg);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
-  /* No default 8px margin: it made the page 16px wider than the viewport */
+
   margin: 0;
   min-height: 100vh;
 }
 
-/* Space between the page content and the footer */
 main {
   padding-bottom: 1.5rem;
 }
 
-/* One centered container with equal side margins, used by every section */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -46,33 +69,45 @@ main {
   box-sizing: border-box;
 }
 
-/* ==========================================================================
-   Header & footer
-   ========================================================================== */
+/* ===== Utilities ===== */
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.linkedinIcon,
+.inlineIcon {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.15em;
+  margin-right: 0.4em;
+}
+
+/* ===== Header & footer ===== */
 
 header {
-  background-color: #ede5d8;
-  /* The site name stays centered; the language switch sits at the right edge */
+  background-color: var(--color-surface);
+
   position: relative;
 }
 
-footer {
-  background-color: #ede5d8;
-  height: 6rem;
-  width: 100%;
+.siteName,
+header h1 {
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
 }
 
-.footerInfo {
-  color: #3d2b1a;
-  font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
-}
-
-/* Language switch (header on bilingual pages) */
 nav.langSwitch {
-  /* Also matches the main nav's sticky bar rules; reset those here */
   position: absolute;
   top: 50%;
   right: var(--container-gutter);
@@ -85,109 +120,31 @@ nav.langSwitch {
   letter-spacing: 0.05rem;
 }
 
-/* Padding gives a comfortable tap target without a visible box */
 .langSwitch a,
 .langSwitch strong {
   display: inline-block;
   padding: 0.5rem 0.25rem;
 }
 
-/* The current language is plain text, not a link */
 .langSwitch strong {
   color: var(--color-accent);
 }
 
-/* LinkedIn logo, and line icons (download, envelope) drawn in the link's
-   text colour */
-.linkedinIcon,
-.inlineIcon {
-  width: 1.1em;
-  height: 1.1em;
-  vertical-align: -0.15em;
-  margin-right: 0.4em;
+footer {
+  background-color: var(--color-surface);
+  height: 6rem;
+  width: 100%;
 }
 
-/* ==========================================================================
-   Headings
-   ========================================================================== */
-
-h1,
-h2,
-h3 {
-  font-family: var(--font-heading);
-}
-
-h1 {
-  background-color: #ede5d8;
+.footerInfo {
+  color: var(--color-brown);
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   padding: 2rem;
-  letter-spacing: 0.3rem;
-  font-size: 2rem;
 }
 
-h2 {
-  background-color: #ede5d8;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem;
-  padding-top: 0;
-  margin-top: 0;
-}
-
-h3 {
-  text-align: center;
-}
-
-.subHeadings {
-  background-color: #ede5d8;
-  font-size: 1.5rem;
-  padding: 0.3rem;
-  margin-top: 0;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  /* Keep the heading visible below the sticky nav when jumped to */
-  scroll-margin-top: 5rem;
-}
-
-/* Short terracotta underline under section headings */
-.subHeadings::after {
-  content: "";
-  width: 2.5rem;
-  height: 3px;
-  margin-top: 0.2rem;
-  border-radius: 2px;
-  background-color: var(--color-accent);
-}
-
-.home .subHeadings {
-  margin-bottom: 1rem;
-}
-
-/* Site name in the header, same size on every page (a <p> on the front page,
-   the <h1> on case study pages) */
-.siteName,
-header h1 {
-  margin: 0;
-  padding: 1rem;
-  display: block;
-  text-align: center;
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.2rem;
-}
-
-/* ==========================================================================
-   Navigation
-   ========================================================================== */
+/* ===== Navigation ===== */
 
 nav {
   padding: 1rem;
@@ -197,7 +154,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: #f5f0eb;
+  background-color: var(--color-bg);
 }
 
 .navigationBar {
@@ -208,50 +165,18 @@ nav {
 }
 
 .navigationButton {
-  background-color: #f5f0eb;
-  border: 1px solid #3d2b1a;
-  color: #1a1208;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-brown);
+  color: var(--color-text);
   display: flex;
   width: 10rem;
   border-radius: var(--radius-sm);
 }
 
-/* The link fills the whole button so the full box is clickable */
 .navigationButton a {
   flex: 1;
   text-align: center;
   padding: 0.2rem;
-}
-
-.navigationButton:hover {
-  background-color: #3d2b1a;
-  cursor: pointer;
-}
-
-.navigationButton:hover a {
-  color: #f5f0eb;
-}
-
-/* ==========================================================================
-   Links
-   ========================================================================== */
-
-a:link,
-a:visited {
-  color: #3d2b1a;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-
-a:hover {
-  color: #8b6340;
-  text-decoration-thickness: 2px;
-}
-
-/* <u> inside a link draws its own underline; match the link's thickness */
-a u {
-  text-decoration-thickness: inherit;
 }
 
 .navigationButton a:link,
@@ -260,20 +185,42 @@ a u {
   text-decoration: none;
 }
 
-/* ==========================================================================
-   Button links (must come after the general link styles)
-   ========================================================================== */
+.navigationButton:hover {
+  background-color: var(--color-brown);
+  cursor: pointer;
+}
 
-/* Shared bordered button look: "View case study", "Back to all case studies",
-   "Back to top" and the front page hero buttons */
+.navigationButton:hover a {
+  color: var(--color-bg);
+}
+
+/* ===== Links & buttons ===== */
+
+a:link,
+a:visited {
+  color: var(--color-brown);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--color-brown-light);
+  text-decoration-thickness: 2px;
+}
+
+a u {
+  text-decoration-thickness: inherit;
+}
+
 a.caseStudyLink,
 .csBackLink a,
 a.backToTop,
 .home a.heroButton {
-  border: 1px solid #3d2b1a;
+  border: 1px solid var(--color-brown);
   border-radius: var(--radius-sm);
-  background-color: #f5f0eb;
-  color: #1a1208;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   text-decoration: none;
   transition:
     background-color 0.2s ease,
@@ -284,8 +231,8 @@ a.caseStudyLink:hover,
 .csBackLink a:hover,
 a.backToTop:hover,
 .home a.heroButton:hover {
-  background-color: #3d2b1a;
-  color: #f5f0eb;
+  background-color: var(--color-brown);
+  color: var(--color-bg);
 }
 
 a.caseStudyLink,
@@ -302,19 +249,16 @@ a.backToTop {
   padding: 0.5rem 1rem;
 }
 
-/* ==========================================================================
-   Keyboard focus
-   ========================================================================== */
+/* ===== Keyboard focus ===== */
 
 a:focus-visible {
-  outline: 2px solid #3d2b1a;
+  outline: 2px solid var(--color-brown);
   outline-offset: 2px;
 }
 
-/* Nav: ring around the whole bordered button, not just the link text */
 @supports selector(:has(a)) {
   .navigationButton:has(a:focus-visible) {
-    outline: 2px solid #3d2b1a;
+    outline: 2px solid var(--color-brown);
     outline-offset: 2px;
   }
 
@@ -323,11 +267,130 @@ a:focus-visible {
   }
 }
 
-/* ==========================================================================
-   Index page — case study grid
-   ========================================================================== */
+/* ===== Section headings ===== */
 
-/* Width and side margins come from .container */
+.subHeadings {
+  background-color: var(--color-surface);
+  font-size: 1.5rem;
+  padding: 0.3rem;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+
+  scroll-margin-top: 5rem;
+}
+
+.subHeadings::after {
+  content: "";
+  width: 2.5rem;
+  height: 3px;
+  margin-top: 0.2rem;
+  border-radius: 2px;
+  background-color: var(--color-accent);
+}
+
+.home .subHeadings {
+  margin-bottom: 1rem;
+}
+
+/* ===== Front page ===== */
+
+/* --- Hero --- */
+
+.home .profileInnerBox {
+  align-items: center;
+  padding-block: 1.5rem 2rem;
+}
+
+.home .profileInnerBox .aboutImage {
+  flex: 0 0 26%;
+  max-width: 20rem;
+}
+
+.home hgroup {
+  margin-bottom: 1rem;
+}
+
+.home .heroTitle {
+  margin: 0 0 0.35rem;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.home .heroSubtitle {
+  margin: 0;
+  color: var(--color-brown);
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  font-weight: 500;
+}
+
+.home .heroIntro,
+.home .heroStatus {
+  margin: 0 0 0.75rem;
+}
+
+.home .heroIntro {
+  max-width: 65ch;
+  font-size: 1.2rem;
+  line-height: 1.55;
+}
+
+.home .heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 1.5rem;
+}
+
+.home a.heroButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+
+  font-size: 1rem;
+  padding: 0.45rem 0.9rem;
+}
+
+.home a.heroButton .inlineIcon {
+  margin-right: 0;
+}
+
+.home a.heroButtonPrimary {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: bold;
+}
+
+.home a.heroButtonPrimary:hover {
+  border-color: var(--color-accent-hover);
+  background-color: var(--color-accent-hover);
+}
+
+@media only screen and (max-width: 767px), (pointer: coarse) {
+  .home a.heroButton {
+    min-height: 2.75rem;
+    box-sizing: border-box;
+  }
+}
+
+.home .heroLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+}
+
+/* --- Projects grid --- */
+
 .caseStudyGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -336,9 +399,8 @@ a:focus-visible {
   margin-bottom: 40px;
 }
 
-/* Borderless soft fill: only buttons get borders, so cards don't look clickable */
 .caseStudyCard {
-  background-color: #ede5d8;
+  background-color: var(--color-surface);
   border-radius: var(--radius-md);
   padding: 1.5rem;
   display: flex;
@@ -380,11 +442,8 @@ a:focus-visible {
   align-self: flex-start;
 }
 
-/* ==========================================================================
-   Index page — about me
-   ========================================================================== */
+/* --- About me --- */
 
-/* Width and side margins come from .container */
 .aboutSingle {
   padding-block: 2rem;
   text-align: left;
@@ -418,14 +477,11 @@ a:focus-visible {
   margin-bottom: 0;
 }
 
-/* About section: wider photo, shorter lines, so text and collage end level on laptop.
-   Side-by-side layout only; mobile stacks them (see max-width: 767px) */
 @media only screen and (min-width: 768px) {
   #about-me + section .aboutImage {
     flex-basis: 34.5%;
   }
 
-  /* English text is one line longer, so the photo needs a little more width */
   html[lang="en"] #about-me + section .aboutImage {
     flex-basis: 36%;
   }
@@ -435,134 +491,46 @@ a:focus-visible {
   }
 }
 
-/* ==========================================================================
-   Index page — header name & hero (scoped to <body class="home">)
-   ========================================================================== */
+/* ===== Case study pages ===== */
 
-/* Photo narrower and text vertically centred: less empty space below */
-.home .profileInnerBox {
-  align-items: center;
-  padding-block: 1.5rem 2rem;
-}
-
-.home .profileInnerBox .aboutImage {
-  flex: 0 0 26%;
-  max-width: 20rem;
-}
-
-.home hgroup {
-  margin-bottom: 1rem;
-}
-
-/* Reset the global boxed h1 look */
-.home .heroTitle {
-  background-color: transparent;
-  display: block;
-  padding: 0;
-  margin: 0 0 0.35rem;
-  letter-spacing: normal;
-  font-size: clamp(2.25rem, 5vw, 3.25rem);
-  font-weight: 700;
-  line-height: 1.1;
-}
-
-.home .heroSubtitle {
-  margin: 0;
-  color: #3d2b1a;
-  font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
-  font-weight: 500;
-}
-
-.home .heroIntro,
-.home .heroStatus {
-  margin: 0 0 0.75rem;
-}
-
-/* Line length limit for the intro text only */
-.home .heroIntro {
-  max-width: 65ch;
-  font-size: 1.2rem;
-  line-height: 1.55;
-}
-
-.home .heroActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 1.25rem 0 1.5rem;
-}
-
-/* Secondary button: same look as "View case study" (colours and border are
-   in the shared button rule above) */
-.home a.heroButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4em;
-  /* Fixed size, so the buttons don't grow with the hero text on phones */
-  font-size: 1rem;
-  padding: 0.45rem 0.9rem;
-}
-
-.home a.heroButton .inlineIcon {
-  margin-right: 0;
-}
-
-/* Primary button: cream on terracotta = 5.74:1, hover 7.87:1 */
-.home a.heroButtonPrimary {
-  border-color: var(--color-accent);
-  background-color: var(--color-accent);
-  color: #f5f0eb;
-  font-weight: bold;
-}
-
-.home a.heroButtonPrimary:hover {
-  border-color: var(--color-accent-hover);
-  background-color: var(--color-accent-hover);
-}
-
-/* 44px minimum touch target on phones and touchscreens */
-@media only screen and (max-width: 767px), (pointer: coarse) {
-  .home a.heroButton {
-    min-height: 2.75rem;
-    box-sizing: border-box;
-  }
-}
-
-/* LinkedIn and email: quiet text links, wrap onto two lines when narrow */
-.home .heroLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin: 0;
-}
-
-/* ==========================================================================
-   Case study page — structure & hero
-   ========================================================================== */
+/* --- Structure --- */
 
 .csSectionBlock {
-  padding: 2.5rem 0;
+  padding-block: calc(var(--section-gap) / 2);
 }
 
-/* Divider between sections, and between the hero and the first section */
 .csSectionBlock + .csSectionBlock,
 main > section + .csSectionBlock {
-  border-top: 1px solid #c8b9a8;
+  border-top: 1px solid var(--color-divider);
 }
 
-.csSectionTitle {
+.subHeadings.csSectionTitle {
   background-color: transparent;
-  margin: 0 0 1.5rem;
+  margin: 0 0 var(--space-l);
+  text-transform: uppercase;
+  line-height: 1.2;
 }
+
+.csSingle {
+  --column-max: 736px;
+  max-width: calc(var(--column-max) + 4rem);
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.csBackLink {
+  text-align: center;
+  padding: 2rem;
+}
+
+/* --- Hero --- */
 
 .csHero {
   max-width: 800px;
   margin: 0 auto;
-  /* Bottom padding matches .csSectionBlock, so the first section is spaced
-     like the others */
-  padding: 2rem 2rem 2.5rem;
+
+  padding: 2rem 2rem calc(var(--section-gap) / 2);
   text-align: center;
   box-sizing: border-box;
 }
@@ -575,20 +543,31 @@ main > section + .csSectionBlock {
   margin-bottom: 0.75rem;
 }
 
-/* Lighter one-sentence summary under the case title: body font, muted colour,
-   wrapped over two even lines */
+.csEyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.csTitle {
+  margin: 0 0 0.35rem;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  line-height: 1.1;
+}
+
 .csLede {
   max-width: 32em;
   margin: 0 auto;
-  color: #6b5642;
+  color: var(--color-text-muted);
   font-size: 1.2rem;
   font-weight: normal;
   line-height: 1.45;
   text-wrap: balance;
 }
 
-/* Skill tags as soft chips: fill only, no border, so they don't read as buttons.
-   role="list" on the <ul> keeps list semantics in Safari with list-style: none */
 .csChips {
   display: flex;
   flex-wrap: wrap;
@@ -602,42 +581,13 @@ main > section + .csSectionBlock {
 .csChips li {
   padding: 0.3rem 0.8rem;
   border-radius: 999px;
-  background-color: #ede5d8;
-  color: #5a4636;
+  background-color: var(--color-surface);
+  color: var(--color-text-soft);
   font-size: 0.85rem;
   line-height: 1.3;
 }
 
-/* Small context line above the case title */
-.csEyebrow {
-  margin: 0 0 0.5rem;
-  color: var(--color-accent);
-  font-size: 0.85rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-/* Project name as a large heading, like the front page hero title: resets the
-   global boxed h2 look */
-.csTitle {
-  display: block;
-  background-color: transparent;
-  padding: 0;
-  margin: 0 0 0.35rem;
-  letter-spacing: normal;
-  font-size: clamp(2.25rem, 5vw, 3.25rem);
-  line-height: 1.1;
-}
-
-.csBackLink {
-  text-align: center;
-  padding: 2rem;
-}
-
-/* ==========================================================================
-   Case study page — MY ROLE section (key numbers, deliverables, results, meta)
-   ========================================================================== */
+/* --- My role summary --- */
 
 .csSummaryStats {
   display: grid;
@@ -646,7 +596,7 @@ main > section + .csSectionBlock {
   list-style: none;
   padding: 0 0 1.25rem;
   margin: 0 0 1.25rem;
-  border-bottom: 1px solid #ddd0c1;
+  border-bottom: 1px solid var(--color-divider-light);
   font-size: 0.9rem;
   line-height: 1.3;
 }
@@ -656,14 +606,15 @@ main > section + .csSectionBlock {
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 2.5rem;
-  line-height: 1.1;
+  line-height: 1;
+  margin-bottom: 0.1rem;
   color: var(--color-accent);
 }
 
 .csSummaryList {
   margin: 0;
   padding-left: 1.25rem;
-  /* Avoid single words on their own line */
+
   text-wrap: pretty;
 }
 
@@ -675,24 +626,19 @@ main > section + .csSectionBlock {
   color: var(--color-accent);
 }
 
-/* "Results" subheading: the case's h4 style in terracotta, with extra space
-   above so the role bullets and the results read as two groups (follows the
-   list, so it wins over the .csSubTitle margin) */
-.csSummaryList + .csSummaryResultsLabel {
-  margin-top: 1.5rem;
+.csSingle .csSummaryList + .csSummaryResultsLabel {
+  margin-top: var(--space-m);
   color: var(--color-accent);
 }
 
 .csSummaryMeta {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, max-content));
+  grid-template-columns: repeat(4, auto);
   justify-content: space-between;
-  /* Minimum gap only: space-between spreads the columns when there's room.
-     Long values wrap evenly instead of crowding the next column */
   gap: 1rem 1.5rem;
   margin: 1.5rem 0 0;
   padding-top: 1.25rem;
-  border-top: 1px solid #ddd0c1;
+  border-top: 1px solid var(--color-divider-light);
   font-size: 0.9rem;
   line-height: 1.35;
 }
@@ -703,62 +649,37 @@ main > section + .csSectionBlock {
   letter-spacing: 0.1rem;
   font-size: 0.75rem;
   margin-bottom: 0.2rem;
-  color: #3d2b1a;
+  color: var(--color-brown);
 }
 
 .csSummaryMeta dd {
   margin: 0;
 }
 
-/* ==========================================================================
-   Case study page — content
-   ========================================================================== */
+/* --- Text --- */
 
-.csSingle {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  box-sizing: border-box;
-}
-
-/* No extra gap at the top or bottom of a section's content */
-.csSingle > :first-child {
-  margin-top: 0;
-}
-
-.csSingle > :last-child {
-  margin-bottom: 0;
-}
-
-.csSubsection {
-  margin-bottom: 1.5rem;
-}
-
-.csSubsection:last-child {
-  margin-bottom: 0;
-}
-
-/* Extra space above a subsection that follows images */
-.csSubsectionSpaced {
-  margin-top: 2.5rem;
+.csSingle .aboutText,
+.csSingle ul:not([class]),
+.csSingle .csSpacedList {
+  margin: 0 0 var(--space-paragraph);
+  line-height: 1.65;
+  text-wrap: pretty;
 }
 
 .csSubTitle {
   font-family: var(--font-heading);
   font-weight: bold;
-  font-size: 1.1rem;
-  margin: 0 0 0.5rem 0;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  margin: var(--space-xl) 0 var(--space-xs);
 }
 
-/* Findings list: even, modest gap between multi-line items */
 .csSpacedList li + li {
   margin-top: 0.75em;
 }
 
-/* Key statement: larger text with a terracotta left rule. No background or full
-   border, so it doesn't read as a button or card */
 .csCallout {
-  margin: 1.75rem 0;
+  margin: var(--space-l) 0;
   padding: 0.25rem 0 0.25rem 1.25rem;
   border-left: 4px solid var(--color-accent);
   font-size: 1.2rem;
@@ -767,36 +688,29 @@ main > section + .csSectionBlock {
   text-wrap: pretty;
 }
 
-/* ==========================================================================
-   Case study page — requirements grid
-   ========================================================================== */
+/* --- Requirement boxes --- */
 
-/* Full width of the text column, so the boxes line up with the text above */
 .requirementsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin: var(--space-m) 0;
 }
 
-/* Borderless soft fill, like the info cards below */
 .requirementBox {
   border-radius: var(--radius-md);
   padding: 1rem 1.5rem;
   text-align: center;
-  background-color: #ede5d8;
+  background-color: var(--color-surface);
 }
 
-/* ==========================================================================
-   Case study page — research overview
-   ========================================================================== */
+/* --- Info cards --- */
 
 .InfoCardOverview {
   display: flex;
   gap: 1rem;
-  margin: 1.5rem auto;
+  margin: var(--space-m) 0;
   justify-content: center;
-  max-width: 700px;
 }
 
 .InfoCardBox {
@@ -808,7 +722,7 @@ main > section + .csSectionBlock {
   border-radius: var(--radius-md);
   padding: 0.5rem;
   text-align: center;
-  background-color: #ede5d8;
+  background-color: var(--color-surface);
   min-height: 3rem;
   box-sizing: border-box;
 }
@@ -834,17 +748,15 @@ main > section + .csSectionBlock {
 }
 
 .InfoCardList li::marker {
-  color: #8b6340;
+  color: var(--color-brown-light);
 }
 
-/* ==========================================================================
-   Case study page — images
-   ========================================================================== */
+/* --- Images & video --- */
 
 .case-image {
   width: 100%;
   max-width: 900px;
-  margin: 1.5rem auto;
+  margin: var(--space-l) auto;
   border-radius: var(--radius-md);
   display: block;
 }
@@ -859,7 +771,7 @@ iframe.case-image {
   gap: 1rem;
   align-items: start;
   max-width: 900px;
-  margin: 1.5rem auto;
+  margin: var(--space-l) auto;
 }
 
 .imageGrid img {
@@ -874,7 +786,7 @@ iframe.case-image {
   justify-content: center;
   align-items: flex-start;
   max-width: 900px;
-  margin: 1.5rem auto;
+  margin: var(--space-l) auto;
 }
 
 .imageRow img {
@@ -897,7 +809,7 @@ iframe.case-image {
   display: flex;
   gap: 1rem;
   max-width: 900px;
-  margin: 1.5rem auto;
+  margin: var(--space-l) auto;
   align-items: stretch;
 }
 
@@ -919,18 +831,24 @@ iframe.case-image {
   border-radius: var(--radius-md);
 }
 
-/* ==========================================================================
-   Responsive — tablet (max-width: 1050px)
-   ========================================================================== */
+/* --- Edges --- */
+
+.csSingle > :first-child,
+.csSingle > :first-child > :first-child {
+  margin-top: 0;
+}
+
+.csSingle > :last-child,
+.csSingle > :last-child > :last-child {
+  margin-bottom: 0;
+}
+
+/* ===== Tablet ===== */
 
 @media only screen and (max-width: 1050px) {
-  /* Navigation: tighter spacing so all buttons fit on one row */
-
   .navigationBar {
     gap: 1.5rem;
   }
-
-  /* Index page */
 
   .caseStudyGrid {
     gap: 2rem;
@@ -940,29 +858,56 @@ iframe.case-image {
     height: 16rem;
   }
 
-  /* Hero photo a bit wider, so it doesn't shrink too far on tablets */
   .home .profileInnerBox .aboutImage {
     flex-basis: 36%;
   }
-
-  /* Case study page */
 
   .videoRow img,
   .videoRow iframe {
     height: 400px;
   }
+
+  .csSummaryMeta {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-/* ==========================================================================
-   Responsive — mobile (max-width: 767px)
-   ========================================================================== */
+/* ===== Mobile ===== */
 
 @media only screen and (max-width: 767px) {
   :root {
     --container-gutter: 1rem;
+    --section-gap: var(--space-xl);
   }
 
-  /* Navigation: one compact row, so the sticky bar stays small */
+  ul {
+    padding-left: 1.5rem;
+  }
+
+  .siteName,
+  header h1 {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  header:has(.langSwitch) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--container-gutter);
+  }
+
+  header:has(.langSwitch) .siteName,
+  header:has(.langSwitch) h1 {
+    padding: 0.75rem 0;
+    text-align: left;
+  }
+
+  nav.langSwitch {
+    position: static;
+    transform: none;
+    font-size: 0.85rem;
+  }
 
   nav {
     padding: 0.75rem 1rem;
@@ -984,57 +929,6 @@ iframe.case-image {
     padding: 0.4rem 0.25rem;
   }
 
-  /* Headings */
-
-  h1 {
-    font-size: 1.6rem;
-    letter-spacing: 0.2rem;
-    padding: 1.25rem 1rem;
-  }
-
-  .subHeadings {
-    font-size: 1.3rem;
-    scroll-margin-top: 4.5rem;
-  }
-
-  .siteName,
-  header h1 {
-    padding: 0.75rem 1rem;
-    font-size: 1.1rem;
-  }
-
-  /* Language switch: no room to center the name, so name left and switch right */
-  header:has(.langSwitch) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 var(--container-gutter);
-  }
-
-  header:has(.langSwitch) .siteName,
-  header:has(.langSwitch) h1 {
-    padding: 0.75rem 0;
-    text-align: left;
-  }
-
-  nav.langSwitch {
-    position: static;
-    transform: none;
-    font-size: 0.85rem;
-  }
-
-  /* Text content */
-
-  ul {
-    padding-left: 1.5rem;
-  }
-
-  .profileInnerBox {
-    font-size: 1.1rem;
-  }
-
-  /* Buttons */
-
   a.backToTop {
     right: 1rem;
     bottom: 1rem;
@@ -1042,7 +936,30 @@ iframe.case-image {
     font-size: 0.9rem;
   }
 
-  /* Index page */
+  .subHeadings {
+    font-size: 1.3rem;
+    scroll-margin-top: 4.5rem;
+  }
+
+  .profileInnerBox {
+    font-size: 1.1rem;
+  }
+
+  .home .profileInnerBox {
+    align-items: stretch;
+    gap: 1.25rem;
+    padding-block: 1.25rem 2rem;
+  }
+
+  .home .profileInnerBox .aboutImage {
+    flex: none;
+    width: 100%;
+    max-width: 14rem;
+  }
+
+  .home .heroIntro {
+    font-size: 1.15rem;
+  }
 
   .caseStudyGrid {
     grid-template-columns: 1fr;
@@ -1060,31 +977,8 @@ iframe.case-image {
     margin-inline: auto;
   }
 
-  /* Stacked hero: small photo so "Hi, I'm Lin" is visible sooner */
-  .home .profileInnerBox {
-    align-items: stretch;
-    gap: 1.25rem;
-    padding-block: 1.25rem 2rem;
-  }
-
-  .home .profileInnerBox .aboutImage {
-    flex: none;
-    width: 100%;
-    max-width: 14rem;
-  }
-
-  .home .heroIntro {
-    font-size: 1.15rem;
-  }
-
-  /* Case study page */
-
-  .csSectionBlock {
-    padding: 1.75rem 0;
-  }
-
   .csHero {
-    padding: 1.5rem 1rem 1.75rem;
+    padding: 1.5rem 1rem calc(var(--section-gap) / 2);
   }
 
   .csSingle {
@@ -1101,7 +995,7 @@ iframe.case-image {
   }
 
   .csSummaryMeta {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .InfoCardOverview {
@@ -1140,30 +1034,16 @@ iframe.case-image {
   }
 }
 
-/* ==========================================================================
-   Responsive — small phone (max-width: 480px)
-   ========================================================================== */
+/* ===== Small phone ===== */
 
 @media only screen and (max-width: 480px) {
-  /* Navigation */
-
   .navigationButton {
     font-size: 0.75rem;
   }
 
-  /* Less side padding so one-word labels like PROSJEKTER keep some room */
   .navigationButton a {
     padding: 0.4rem 0.1rem;
   }
-
-  /* Headings */
-
-  h1 {
-    font-size: 1.4rem;
-    letter-spacing: 0.1rem;
-  }
-
-  /* Index page */
 
   .caseStudyCard {
     padding: 1rem;
@@ -1173,12 +1053,9 @@ iframe.case-image {
     height: 12rem;
   }
 
-  /* Full-width, easy-to-tap buttons on small phones */
   .home a.heroButton {
     flex: 1 1 100%;
   }
-
-  /* Case study page */
 
   .requirementsGrid {
     grid-template-columns: 1fr;
