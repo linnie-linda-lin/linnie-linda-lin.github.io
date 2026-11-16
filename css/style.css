@@ -4,7 +4,6 @@
   --color-bg: #f5f0eb;
   --color-surface: #ede5d8;
   --color-text: #1a1208;
-  --color-text-muted: #6b5642;
   --color-text-soft: #5a4636;
   --color-brown: #3d2b1a;
   --color-brown-light: #8b6340;
@@ -46,6 +45,7 @@ body {
   background-color: var(--color-bg);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
+  overflow-wrap: break-word;
 
   margin: 0;
   min-height: 100vh;
@@ -70,6 +70,10 @@ h3 {
 }
 
 /* ===== Utilities ===== */
+
+[hidden] {
+  display: none !important;
+}
 
 .visuallyHidden {
   position: absolute;
@@ -96,8 +100,7 @@ header {
   position: relative;
 }
 
-.siteName,
-header h1 {
+.siteName {
   margin: 0;
   padding: 1rem;
   text-align: center;
@@ -122,8 +125,18 @@ nav.langSwitch {
 
 .langSwitch a,
 .langSwitch strong {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
   padding: 0.5rem 0.25rem;
+  vertical-align: middle;
+}
+
+.langSwitch a:hover {
+  color: var(--color-brown);
 }
 
 .langSwitch strong {
@@ -160,8 +173,10 @@ nav {
 .navigationBar {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 3rem;
+  gap: 0.5rem 3rem;
+  max-width: 100%;
 }
 
 .navigationButton {
@@ -170,11 +185,19 @@ nav {
   color: var(--color-text);
   display: flex;
   width: 10rem;
+  max-width: 100%;
+  min-width: fit-content;
+  box-sizing: border-box;
   border-radius: var(--radius-sm);
 }
 
 .navigationButton a {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  box-sizing: border-box;
   text-align: center;
   padding: 0.2rem;
 }
@@ -237,7 +260,10 @@ a.backToTop:hover,
 
 a.caseStudyLink,
 .csBackLink a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  box-sizing: border-box;
   padding: 0.5rem 1.2rem;
 }
 
@@ -246,12 +272,17 @@ a.backToTop {
   right: 1.5rem;
   bottom: 1.5rem;
   z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  box-sizing: border-box;
   padding: 0.5rem 1rem;
 }
 
 /* ===== Keyboard focus ===== */
 
-a:focus-visible {
+a:focus-visible,
+iframe:focus-visible {
   outline: 2px solid var(--color-brown);
   outline-offset: 2px;
 }
@@ -281,6 +312,8 @@ a:focus-visible {
   text-align: center;
   font-weight: 700;
   letter-spacing: 0.05em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 
   scroll-margin-top: 5rem;
 }
@@ -360,6 +393,8 @@ a:focus-visible {
   gap: 0.4em;
 
   font-size: 1rem;
+  min-height: 44px;
+  box-sizing: border-box;
   padding: 0.45rem 0.9rem;
 }
 
@@ -379,25 +414,26 @@ a:focus-visible {
   background-color: var(--color-accent-hover);
 }
 
-@media only screen and (max-width: 767px), (pointer: coarse) {
-  .home a.heroButton {
-    min-height: 2.75rem;
-    box-sizing: border-box;
-  }
-}
-
 .home .heroLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  gap: 0 1.5rem;
   margin: 0;
+}
+
+.home .heroLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 /* --- Projects grid --- */
 
 .caseStudyGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 3rem;
   padding-block: 2rem;
   margin-bottom: 40px;
@@ -432,6 +468,7 @@ a:focus-visible {
 }
 
 .caseStudyTitle {
+  font-family: inherit;
   font-size: 1.3rem;
   font-weight: bold;
   margin: 0 0 0.5rem 0;
@@ -470,6 +507,8 @@ a:focus-visible {
 
 .aboutContent {
   flex: 1;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .aboutText {
@@ -581,7 +620,7 @@ main > section + .csSectionBlock {
 .csLede {
   max-width: 32em;
   margin: 0 auto;
-  color: var(--color-text-muted);
+  color: var(--color-text-soft);
   font-size: 1.2rem;
   font-weight: normal;
   line-height: 1.45;
@@ -611,9 +650,10 @@ main > section + .csSectionBlock {
 
 .csSummaryStats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   list-style: none;
+  hyphens: auto;
   padding: 0 0 1.25rem;
   margin: 0 0 1.25rem;
   border-bottom: 1px solid var(--color-divider-light);
@@ -680,6 +720,7 @@ main > section + .csSectionBlock {
 
 .csSingle .aboutText,
 .csSingle ul:not([class]),
+.csSingle ol:not([class]),
 .csSingle .csSpacedList {
   margin: 0 0 var(--space-paragraph);
   line-height: 1.65;
@@ -708,11 +749,40 @@ main > section + .csSectionBlock {
   text-wrap: pretty;
 }
 
+/* --- Participant quotes --- */
+
+.csQuote {
+  margin: var(--space-m) 0 var(--space-m) 1.5rem;
+}
+
+.csQuote blockquote {
+  margin: 0;
+}
+
+.csQuote blockquote p {
+  margin: 0;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--color-text);
+  text-wrap: pretty;
+}
+
+.csQuote figcaption {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+}
+
+.csQuote figcaption::before {
+  content: "– ";
+}
+
 /* --- Requirement boxes --- */
 
 .requirementsGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   margin: var(--space-m) 0;
 }
@@ -735,6 +805,7 @@ main > section + .csSectionBlock {
 
 .InfoCardBox {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -745,6 +816,11 @@ main > section + .csSectionBlock {
   background-color: var(--color-surface);
   min-height: 3rem;
   box-sizing: border-box;
+  hyphens: auto;
+}
+
+.InfoCardBox > * {
+  max-width: 100%;
 }
 
 .InfoCardLabel {
@@ -779,6 +855,10 @@ main > section + .csSectionBlock {
   margin: var(--space-l) auto;
   border-radius: var(--radius-md);
   display: block;
+}
+
+.case-image--small {
+  max-width: 500px;
 }
 
 iframe.case-image {
@@ -851,6 +931,110 @@ iframe.case-image {
   border-radius: var(--radius-md);
 }
 
+/* --- Figures with captions --- */
+
+.csFigure {
+  max-width: 900px;
+  margin: var(--space-l) auto;
+}
+
+.csFigure .case-image {
+  margin: 0;
+}
+
+.csFigure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--color-text-soft);
+  text-align: center;
+}
+
+/* Captioned images inside rows, columns and grids */
+.imageRow > .csFigure,
+.sideBySideImages > .csFigure,
+.imageColumn > .csFigure,
+.imageGrid > .csFigure {
+  margin: 0;
+}
+
+.imageRow > .csFigure,
+.sideBySideImages > .csFigure {
+  width: calc(50% - 0.5rem);
+}
+
+.videoRow > .csFigure {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.imageRow .csFigure img,
+.imageColumn .csFigure img,
+.imageGrid .csFigure img {
+  display: block;
+  width: 100%;
+}
+
+/* The large image fills the height of the stacked column next to it */
+.sideBySideImages > .csFigure {
+  display: flex;
+  flex-direction: column;
+}
+
+.sideBySideImages > .csFigure img {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.csFigureRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+  margin: var(--space-l) 0;
+}
+
+.csFigureRow .csFigure {
+  margin: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .csFigureRow--equal .case-image {
+    aspect-ratio: 5456 / 3522;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .csFigureRow--equal .csFigure:first-child .case-image {
+    object-position: left top;
+  }
+
+  /* Image on the left on desktop; text stays first in the HTML so it comes first on mobile */
+  .csSplit > .case-image {
+    order: -1;
+  }
+}
+
+/* --- Text and image in two columns --- */
+
+.csSplit {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: center;
+}
+
+.csSplitText > :last-child {
+  margin-bottom: 0;
+}
+
+.csSplit .case-image {
+  margin: 0;
+}
+
 /* --- Edges --- */
 
 .csSingle > :first-child,
@@ -888,7 +1072,7 @@ iframe.case-image {
   }
 
   .csSummaryMeta {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -904,8 +1088,7 @@ iframe.case-image {
     padding-left: 1.5rem;
   }
 
-  .siteName,
-  header h1 {
+  .siteName {
     padding: 0.75rem 1rem;
     font-size: 1.1rem;
   }
@@ -917,8 +1100,7 @@ iframe.case-image {
     padding: 0 var(--container-gutter);
   }
 
-  header:has(.langSwitch) .siteName,
-  header:has(.langSwitch) h1 {
+  header:has(.langSwitch) .siteName {
     padding: 0.75rem 0;
     text-align: left;
   }
@@ -982,7 +1164,7 @@ iframe.case-image {
   }
 
   .caseStudyGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .aboutSingle {
@@ -1015,7 +1197,7 @@ iframe.case-image {
   }
 
   .csSummaryMeta {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .InfoCardOverview {
@@ -1040,6 +1222,25 @@ iframe.case-image {
   .sideBySideImages > img,
   .imageColumn {
     width: 100%;
+  }
+
+  .imageRow > .csFigure,
+  .sideBySideImages > .csFigure {
+    width: 100%;
+  }
+
+  .videoRow > .csFigure {
+    flex: none;
+  }
+
+  .sideBySideImages > .csFigure img {
+    flex: none;
+  }
+
+  .csFigureRow,
+  .csSplit {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-m);
   }
 
   .videoRow img {
@@ -1078,6 +1279,6 @@ iframe.case-image {
   }
 
   .requirementsGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
