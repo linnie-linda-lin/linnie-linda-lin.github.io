@@ -749,6 +749,48 @@ main > section + .csSectionBlock {
   text-wrap: pretty;
 }
 
+/* --- Findings cards --- */
+
+.csFindings {
+  list-style: none;
+  margin: var(--space-m) 0 var(--space-l);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.csFinding + .csFinding {
+  margin-top: 2.5rem;
+}
+
+.csFindingLabel {
+  margin: 0 0 0.35rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+}
+
+.csFindingTitle {
+  margin: 0 0 var(--space-xs);
+  font-family: var(--font-heading);
+  font-weight: bold;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.csFindingText {
+  margin: 0;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.csFinding .csQuote {
+  margin: 1rem 0 0;
+}
+
 /* --- Participant quotes --- */
 
 .csQuote {
@@ -833,6 +875,19 @@ main > section + .csSectionBlock {
 .InfoCardNumber {
   font-size: 1rem;
   margin: 0;
+}
+
+.InfoCardText {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.InfoCardOverview--goals .InfoCardBox {
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  padding: var(--space-s);
 }
 
 .InfoCardList {
@@ -950,6 +1005,16 @@ iframe.case-image {
   text-align: center;
 }
 
+/* Før/Etter labels: same style as the "Tema" labels in Hovedfunn */
+.csFigureRow--equal .csFigure figcaption {
+  margin-top: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+}
+
 /* Captioned images inside rows, columns and grids */
 .imageRow > .csFigure,
 .sideBySideImages > .csFigure,
@@ -1008,8 +1073,11 @@ iframe.case-image {
     object-position: top;
   }
 
+  /* Før: show the whole screenshot; white fills the space above and below */
   .csFigureRow--equal .csFigure:first-child .case-image {
-    object-position: left top;
+    object-fit: contain;
+    object-position: center;
+    background-color: #ffffff;
   }
 
   /* Image on the left on desktop; text stays first in the HTML so it comes first on mobile */
@@ -1206,6 +1274,10 @@ iframe.case-image {
 
   .InfoCardBox {
     flex: 1 1 calc(50% - 0.5rem);
+  }
+
+  .InfoCardOverview--goals {
+    flex-direction: column;
   }
 
   .imageGrid {
