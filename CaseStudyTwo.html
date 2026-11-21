@@ -27,7 +27,8 @@
     />
     <title>Klar for livet &ndash; Prosjekt | Lin Wei Lam</title>
   </head>
-  <body>
+  <body id="top">
+    <a class="skipLink" href="#main">Hopp til hovedinnhold</a>
     <header>
       <p class="siteName">Lin Wei Lam</p>
       <nav class="langSwitch" aria-label="Språk">
@@ -36,20 +37,20 @@
         <a href="en/CaseStudyTwo.html" lang="en" hreflang="en">English</a>
       </nav>
     </header>
-    <nav aria-label="Hovedmeny">
-      <span class="navigationBar">
-        <span class="navigationButton">
+    <nav class="mainNav" aria-label="Hovedmeny">
+      <ul class="navigationBar">
+        <li class="navigationButton">
           <a href="./index.html">HJEM</a>
-        </span>
-        <span class="navigationButton">
+        </li>
+        <li class="navigationButton">
           <a href="./index.html#case-studies">PROSJEKTER</a>
-        </span>
-        <span class="navigationButton">
+        </li>
+        <li class="navigationButton">
           <a href="./index.html#about-me">OM MEG</a>
-        </span>
-      </span>
+        </li>
+      </ul>
     </nav>
-    <main>
+    <main id="main" tabindex="-1">
       <section>
         <div class="csHero">
           <hgroup>
@@ -68,251 +69,276 @@
             <li>Offentlig sektor</li>
           </ul>
           <img
-            class="case-image"
+            class="caseImage"
             src="Assets/Klar for livet/KlarForLivetPrototypeImage.webp"
             alt="Klar for livet vist på en nettside og en mobil"
           />
         </div>
       </section>
 
-      <div class="csSectionBlock">
+      <section class="csSectionBlock">
         <h2 class="subHeadings csSectionTitle">MIN ROLLE OG BIDRAG</h2>
-        <section>
-          <div class="csSingle">
-            <ul class="csSummaryStats">
-              <li>
-                <span class="csSummaryNumber"
-                  >48<span class="visuallyHidden">&nbsp;</span></span
-                >
-                timer fra oppdrag til pitch
-              </li>
-              <li>
-                <span class="csSummaryNumber"
-                  >2<span class="visuallyHidden">&nbsp;</span></span
-                >
-                prototyper: nettside og Instagram
-              </li>
-              <li>
-                <span class="csSummaryNumber"
-                  >Bronse<span class="visuallyHidden">&nbsp;</span></span
-                >
-                <span aria-hidden="true">🥉</span> HealthHACK 2026
-              </li>
-            </ul>
-            <ul class="csSummaryList">
-              <li>
-                Ledet konseptprosessen og fasiliterte workshopen i teamet, som
-                eneste interaksjonsdesigner
-              </li>
-              <li>
-                Redesignet grensesnittet for Rælingen kommunes nettside og
-                Instagram-prototype
-              </li>
-              <li>
-                Redigerte <span lang="en">reel</span>-videoen og lagde
-                pitchpresentasjonen
-              </li>
-              <li>Holdt pitchen for juryen</li>
-            </ul>
-            <h3 class="csSubTitle csSummaryResultsLabel">Resultater</h3>
-            <ul class="csSummaryList">
-              <li>Vant bronse i pitchkonkurransen på HealthHACK 2026</li>
-              <li>
-                Ble invitert til å presentere konseptet for Rælingen kommune
-              </li>
-            </ul>
-            <dl class="csSummaryMeta">
-              <div>
-                <dt>Rolle</dt>
-                <dd>Design- og konseptansvarlig</dd>
-              </div>
-              <div>
-                <dt>Periode</dt>
-                <dd>17.&ndash;18.&nbsp;september 2026</dd>
-              </div>
-              <div>
-                <dt>Team</dt>
-                <dd>Tverrfaglig team på 4</dd>
-              </div>
-              <div>
-                <dt>Verktøy</dt>
-                <dd>Figma, PowerPoint, CapCut</dd>
-              </div>
-            </dl>
-          </div>
-        </section>
-      </div>
-
-      <div class="csSectionBlock">
-        <h2 class="subHeadings csSectionTitle">PROSJEKTET</h2>
-        <section>
-          <div class="csSingle">
-            <p class="aboutText">
-              HealthHACK er Intelligent Helses årlige hackathon der studenter
-              fra ulike fagfelt møtes for å løse ekte helseutfordringer.
-              Oppdraget vårt kom fra Rælingen kommune.
-            </p>
-            <p class="aboutText">
-              Behovet for kommunale helse- og omsorgstjenester øker, mens
-              ressursene er begrenset. Målet er at flest mulig skal klare seg
-              selv uten direkte støtte fra kommunen.
-            </p>
-            <p class="aboutText">
-              En gruppe som ofte faller mellom to stoler er unge voksne. Mange
-              av dem sliter med å få hverdagen til å gå rundt, synes det er
-              vanskelig å bo alene og opplever sosialt utenforskap.
-            </p>
-            <p class="aboutText">Målgruppen vår:</p>
-            <div class="InfoCardOverview">
-              <article class="InfoCardBox">
-                <p class="InfoCardLabel">
-                  Unge voksne <br />18&ndash;30&nbsp;år
-                </p>
-              </article>
-              <article class="InfoCardBox">
-                <p class="InfoCardLabel">ADHD</p>
-              </article>
-              <article class="InfoCardBox">
-                <p class="InfoCardLabel">Autismespekteret</p>
-              </article>
-              <article class="InfoCardBox">
-                <p class="InfoCardLabel">Angst</p>
-              </article>
+        <div class="csSingle">
+          <ul class="csSummaryStats">
+            <li>
+              <span class="csSummaryNumber"
+                >48<span class="visuallyHidden">&nbsp;</span></span
+              >
+              timer fra oppdrag til pitch
+            </li>
+            <li>
+              <span class="csSummaryNumber"
+                >2<span class="visuallyHidden">&nbsp;</span></span
+              >
+              prototyper: nettside og Instagram
+            </li>
+            <li>
+              <span class="csSummaryNumber"
+                >Bronse<span class="visuallyHidden">&nbsp;</span></span
+              >
+              <span aria-hidden="true">🥉</span> HealthHACK 2026
+            </li>
+          </ul>
+          <ul class="csSummaryList">
+            <li>
+              Ledet konseptprosessen og fasiliterte workshopen i teamet, som
+              eneste interaksjonsdesigner
+            </li>
+            <li>
+              Redesignet grensesnittet for Rælingen kommunes nettside og
+              Instagram-prototype
+            </li>
+            <li>
+              Redigerte <span lang="en">reel</span>-videoen og lagde
+              pitchpresentasjonen
+            </li>
+            <li>Holdt pitchen for juryen</li>
+          </ul>
+          <h3 class="csSubTitle csSummaryResultsLabel">Resultater</h3>
+          <ul class="csSummaryList">
+            <li>Vant bronse i pitchkonkurransen på HealthHACK 2026</li>
+            <li>
+              Ble invitert til å presentere konseptet for Rælingen kommune
+            </li>
+          </ul>
+          <dl class="csSummaryMeta">
+            <div>
+              <dt class="csLabel">Rolle</dt>
+              <dd>Design- og konseptansvarlig</dd>
             </div>
-          </div>
-        </section>
-      </div>
+            <div>
+              <dt class="csLabel">Periode</dt>
+              <dd>17.&ndash;18.&nbsp;september 2026</dd>
+            </div>
+            <div>
+              <dt class="csLabel">Team</dt>
+              <dd>Tverrfaglig team på 4</dd>
+            </div>
+            <div>
+              <dt class="csLabel">Verktøy</dt>
+              <dd>Figma, PowerPoint, CapCut</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
 
-      <div class="csSectionBlock">
+      <section class="csSectionBlock">
+        <h2 class="subHeadings csSectionTitle">PROSJEKTET</h2>
+        <div class="csSingle">
+          <p class="aboutText">
+            HealthHACK er Intelligent Helses årlige hackathon der studenter
+            fra ulike fagfelt møtes for å løse ekte helseutfordringer.
+            Oppdraget vårt kom fra Rælingen kommune.
+          </p>
+          <p class="aboutText">
+            Behovet for kommunale helse- og omsorgstjenester øker, mens
+            ressursene er begrenset. Målet er at flest mulig skal klare seg
+            selv uten direkte støtte fra kommunen.
+          </p>
+          <p class="aboutText">
+            En gruppe som ofte faller mellom to stoler er unge voksne. Mange
+            av dem sliter med å få hverdagen til å gå rundt, synes det er
+            vanskelig å bo alene og opplever sosialt utenforskap.
+          </p>
+          <p class="aboutText">Målgruppen vår:</p>
+          <div class="infoCardOverview">
+            <article class="infoCardBox">
+              <p class="infoCardLabel">Unge voksne 18&ndash;&#8288;30&nbsp;år</p>
+            </article>
+            <article class="infoCardBox">
+              <p class="infoCardLabel">ADHD</p>
+            </article>
+            <article class="infoCardBox">
+              <p class="infoCardLabel">Autismespekteret</p>
+            </article>
+            <article class="infoCardBox">
+              <p class="infoCardLabel">Angst</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="csSectionBlock">
         <h2 class="subHeadings csSectionTitle">INNSIKT</h2>
-        <section>
-          <div class="csSingle">
-            <p class="aboutText">
-              Vi startet med å snakke med en representant fra Rælingen kommune
-              for å forstå problemområdet og menneskene det gjelder. Gjennom
-              informasjonsinnhenting utforsket vi hvorfor unge voksne flytter
-              hjemmefra, hva som gjør dem sårbare og hvem som har størst risiko
-              for å falle mellom to stoler.
-            </p>
-            <p class="aboutText">
-              Underveis kartla vi smertepunktene kommunen ser hos målgruppen.
-              Det ga oss innsikt i gapet mellom det kommunen kan tilby, og det
-              disse unge voksne faktisk trenger i hverdagen. Rælingen kommune
-              anslår at rundt 50 unge voksne bare i deres kommune er i en
-              lignende situasjon.
-            </p>
-            <figure class="csFigure">
-              <img
-                class="case-image"
-                src="Assets/Klar for livet/YoungAdultSupportStatistics.webp"
-                alt="Grafikk som viser at rundt 50 unge voksne i Rælingen kommune sliter med å bo selvstendig, og at 6,1 prosent har ADHD og 1,8 prosent har autisme i Norge"
-              />
-              <figcaption>Unge voksne som trenger støtte</figcaption>
-            </figure>
-          </div>
-        </section>
-      </div>
+        <div class="csSingle">
+          <p class="aboutText">
+            Vi startet med å snakke med en representant fra Rælingen kommune
+            for å forstå problemområdet og menneskene det gjelder. Gjennom
+            informasjonsinnhenting utforsket vi hvorfor unge voksne flytter
+            hjemmefra, hva som gjør dem sårbare og hvem som har størst risiko
+            for å falle mellom to stoler.
+          </p>
+          <p class="aboutText">
+            Underveis kartla vi smertepunktene kommunen ser hos målgruppen.
+            Det ga oss innsikt i gapet mellom det kommunen kan tilby, og det
+            disse unge voksne faktisk trenger i hverdagen. Rælingen kommune
+            anslår at rundt 50 unge voksne bare i deres kommune er i en
+            lignende situasjon.
+          </p>
+          <figure class="csFigure">
+            <img
+              class="caseImage"
+              src="Assets/Klar for livet/YoungAdultSupportStatistics.webp"
+              alt="Grafikk som viser at rundt 50 unge voksne i Rælingen kommune sliter med å bo selvstendig, og at 6,1 prosent har ADHD og 1,8 prosent har autisme i Norge"
+            />
+            <figcaption>Unge voksne som trenger støtte</figcaption>
+          </figure>
+        </div>
+      </section>
 
-      <div class="csSectionBlock">
+      <section class="csSectionBlock">
         <h2 class="subHeadings csSectionTitle">PROSESS</h2>
-        <section>
-          <div class="csSingle">
-            <h3 class="csSubTitle">Persona</h3>
-            <p class="aboutText">
-              For å samle innsikten og gjøre problemet konkret og menneskelig,
-              utviklet vi personaen Tom:
-            </p>
-            <ul>
-              <li>
-                Tom, 19 år, har ADHD og flytter hjemmefra for første gang.
-              </li>
-              <li>
-                Han har aldri bodd alene, sliter med å organisere seg og har
-                ingen støtte fra familien.
-              </li>
-              <li>
-                Etter hvert hoper klesvasken seg opp, maten blir dårlig i
-                kjøleskapet og den psykiske helsen begynner å svikte.
-              </li>
-            </ul>
-            <figure class="csFigure">
-              <img
-                class="case-image"
-                src="Assets/Klar for livet/TomPersona.webp"
-                alt="Illustrasjon av personaen Tom, 19 år med ADHD, som flytter hjemmefra for første gang"
-              />
-              <figcaption>Personaen Tom</figcaption>
-            </figure>
-            <p class="aboutText">
-              Tom hjalp oss å forstå hvem vi designet for, hva som var vanskelig
-              for ham og hva han egentlig trengte. Vi kartla smertepunktene og
-              brukerreisen hans, definerte hvordan et godt utfall ville se ut,
-              og stilte oss spørsmålet: hvordan kan vi hjelpe?
-            </p>
-            <h3 class="csSubTitle">Idémyldring</h3>
-            <p class="aboutText">
-              Vi formulerte <span lang="en">How Might We</span>-spørsmål og
-              brukte en <span lang="en">Crazy 8s</span>-workshop for å generere
-              mange ulike ideer. Vi analyserte og vurderte ulike retninger og
-              konsepter opp mot smertepunktene vi hadde identifisert, og snevret
-              gradvis inn mot det vi ønsket å løse. Og én ting ble tydelig:
-            </p>
-            <p class="csCallout">
+        <div class="csSingle">
+          <h3 class="csSubTitle">Persona</h3>
+          <p class="aboutText">
+            For å samle innsikten og gjøre problemet konkret og menneskelig,
+            utviklet vi personaen Tom:
+          </p>
+          <ul>
+            <li>
+              Tom, 19 år, har ADHD og flytter hjemmefra for første gang.
+            </li>
+            <li>
+              Han har aldri bodd alene, sliter med å organisere seg og har
+              ingen støtte fra familien.
+            </li>
+            <li>
+              Etter hvert hoper klesvasken seg opp, maten blir dårlig i
+              kjøleskapet og den psykiske helsen begynner å svikte.
+            </li>
+          </ul>
+          <figure class="csFigure">
+            <img
+              class="caseImage"
+              src="Assets/Klar for livet/TomPersona.webp"
+              alt="Illustrasjon av personaen Tom, 19 år med ADHD, som flytter hjemmefra for første gang"
+            />
+            <figcaption>Personaen Tom</figcaption>
+          </figure>
+          <p class="aboutText">
+            Tom hjalp oss å forstå hvem vi designet for, hva som var vanskelig
+            for ham og hva han egentlig trengte. Vi kartla smertepunktene og
+            brukerreisen hans, definerte hvordan et godt utfall ville se ut,
+            og stilte oss spørsmålet: hvordan kan vi hjelpe?
+          </p>
+          <h3 class="csSubTitle">Idémyldring</h3>
+          <p class="aboutText">
+            Vi formulerte <span lang="en">How Might We</span>-spørsmål og
+            brukte en <span lang="en">Crazy 8s</span>-workshop for å generere
+            mange ulike ideer. Vi analyserte og vurderte ulike retninger og
+            konsepter opp mot smertepunktene vi hadde identifisert, og snevret
+            gradvis inn mot det vi ønsket å løse. Og én ting ble tydelig:
+          </p>
+          <div class="csCallout">
+            <p class="csLabel">Innsikt</p>
+            <p class="csCalloutText">
               Hvordan vi tar vare på hjemmet vårt sier ofte mye om hvordan vi
               har det psykisk og sosialt.
             </p>
-            <div class="imageRow">
+          </div>
+          <div class="imageGrid">
+            <figure class="csFigure">
               <img
                 src="Assets/Klar for livet/Brainstorming.webp"
                 alt="Teamet idémyldrer under HealthHACK 2026"
               />
-              <figure class="csFigure">
-                <img
-                  src="Assets/Klar for livet/Crazy8Workshop.webp"
-                  alt="Skisser fra Crazy 8s-øvelsen organisert på en vegg"
-                />
-                <figcaption>Skisser fra <span lang="en">Crazy 8s</span></figcaption>
-              </figure>
-            </div>
-            <p class="aboutText">
-              De fleste lærer disse ferdighetene av familie og andre nære, men
-              ikke alle har tilgang til den typen støtte. Det var her vi så
-              muligheten, og det ledet oss til den endelige problemstillingen
-              vår:
-            </p>
-            <p class="csCallout">
+              <figcaption>Idémyldring</figcaption>
+            </figure>
+            <figure class="csFigure">
+              <img
+                src="Assets/Klar for livet/Crazy8Workshop.webp"
+                alt="Skisser fra Crazy 8s-øvelsen organisert på en vegg"
+              />
+              <figcaption>Skisser fra <span lang="en">Crazy 8s</span></figcaption>
+            </figure>
+          </div>
+          <p class="aboutText">
+            De fleste lærer disse ferdighetene av familie og andre nære, men
+            ikke alle har tilgang til den typen støtte. Det var her vi så
+            muligheten, og det ledet oss til den endelige problemstillingen
+            vår:
+          </p>
+          <div class="csCallout">
+            <p class="csLabel">Problemstilling</p>
+            <p class="csCalloutText">
               Hvordan kan vi hjelpe nevrodivergente unge voksne med å bygge gode
               vaner rundt viktige oppgaver i hjemmet?
             </p>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <div class="csSectionBlock">
+      <section class="csSectionBlock">
         <h2 class="subHeadings csSectionTitle">LØSNINGEN</h2>
-        <section>
-          <div class="csSingle">
-            <h3 class="csSubTitle">Klar for livet</h3>
-            <p class="aboutText">
-              Klar for livet bygger videre på plattformer som Rælingen kommune
-              allerede bruker. Løsningen vår tilbyr kognitivt tilpassede og
-              tilgjengelige videoer og verktøy for hverdagsoppgaver som å handle
-              mat, rydde og spare penger.
-            </p>
+        <div class="csSingle">
+          <h3 class="csSubTitle">Klar for livet</h3>
+          <p class="aboutText">
+            Klar for livet bygger videre på plattformer som Rælingen kommune
+            allerede bruker. Løsningen vår tilbyr kognitivt tilpassede og
+            tilgjengelige videoer og verktøy for hverdagsoppgaver som å handle
+            mat, rydde og spare penger.
+          </p>
+          <figure class="csFigure">
+            <img
+              class="caseImage"
+              src="Assets/Klar for livet/KlarForLivetPrototypeImage.webp"
+              alt="Klar for livet vist på en nettside og en mobil"
+            />
+            <figcaption>Klar for livet på nett og mobil</figcaption>
+          </figure>
+          <iframe
+            class="caseImage"
+            height="500"
+            src="https://www.youtube.com/embed/KpIRFvI8nDc"
+            title="Demovideo av Klar for livet på Rælingen kommunes nettside"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+            "
+            allowfullscreen
+          >
+          </iframe>
+          <h3 class="csSubTitle">Instruksjonsvideoer med QR-koder</h3>
+          <p class="aboutText">
+            Konseptet har også planlagte funksjoner som personlige påminnelser
+            og en «Velkommen til voksenlivet»-pakke med QR-koder som lenker
+            til instruksjonsvideoer.
+          </p>
+          <div class="imageGrid videoRow">
             <figure class="csFigure">
               <img
-                class="case-image"
-                src="Assets/Klar for livet/KlarForLivetPrototypeImage.webp"
-                alt="Klar for livet vist på en nettside og en mobil"
+                src="Assets/Klar for livet/QRCodeConcept.webp"
+                alt="En vaskemaskin med et QR-klistremerke som lenker til en instruksjonsvideo"
               />
-              <figcaption>Klar for livet på nett og mobil</figcaption>
+              <figcaption>QR-kode på vaskemaskinen</figcaption>
             </figure>
             <iframe
-              class="case-image"
-              width="100%"
-              height="500"
-              src="https://www.youtube.com/embed/KpIRFvI8nDc"
-              title="Demovideo av Klar for livet på Rælingen kommunes nettside"
+              src="https://www.youtube.com/embed/RUuIVr1mesQ"
+              title="Demovideo om hvordan man vasker klær"
               allow="
                 accelerometer;
                 autoplay;
@@ -324,123 +350,89 @@
               allowfullscreen
             >
             </iframe>
-            <h3 class="csSubTitle">Instruksjonsvideoer med QR-koder</h3>
-            <p class="aboutText">
-              Konseptet har også planlagte funksjoner som personlige påminnelser
-              og en «Velkommen til voksenlivet»-pakke med QR-koder som lenker
-              til instruksjonsvideoer.
-            </p>
-            <div class="imageRow videoRow">
-              <figure class="csFigure">
-                <img
-                  class="case-image"
-                  src="Assets/Klar for livet/QRCodeConcept.webp"
-                  alt="En vaskemaskin med et QR-klistremerke som lenker til en instruksjonsvideo"
-                />
-                <figcaption>QR-kode på vaskemaskinen</figcaption>
-              </figure>
-              <iframe
-                src="https://www.youtube.com/embed/RUuIVr1mesQ"
-                title="Demovideo om hvordan man vasker klær"
-                allow="
-                  accelerometer;
-                  autoplay;
-                  clipboard-write;
-                  encrypted-media;
-                  gyroscope;
-                  picture-in-picture;
-                "
-                allowfullscreen
-              >
-              </iframe>
-            </div>
-            <h3 class="csSubTitle">Veikart</h3>
-            <p class="aboutText">
-              Klar for livet ble utviklet på 48 timer, og er bare begynnelsen.
-              Veikartet vårt viser de neste stegene for å gjøre konseptet til
-              virkelighet: fra å teste det med ekte brukere til utvikling av
-              backend og en full pilot med Rælingen kommune.
-            </p>
-            <figure class="csFigure">
-              <img
-                class="case-image"
-                src="Assets/Klar for livet/RoadMap.webp"
-                alt="Veikart for Klar for livet: brukertesting, utvikling av backend og pilot med Rælingen kommune"
-              />
-              <figcaption>Veikart</figcaption>
-            </figure>
           </div>
-        </section>
-      </div>
+          <h3 class="csSubTitle">Veikart</h3>
+          <p class="aboutText">
+            Klar for livet ble utviklet på 48 timer, og er bare begynnelsen.
+            Veikartet vårt viser de neste stegene for å gjøre konseptet til
+            virkelighet: fra å teste det med ekte brukere til utvikling av
+            backend og en full pilot med Rælingen kommune.
+          </p>
+          <figure class="csFigure">
+            <img
+              class="caseImage"
+              src="Assets/Klar for livet/RoadMap.webp"
+              alt="Veikart for Klar for livet: brukertesting, utvikling av backend og pilot med Rælingen kommune"
+            />
+            <figcaption>Veikart</figcaption>
+          </figure>
+        </div>
+      </section>
 
-      <div class="csSectionBlock">
+      <section class="csSectionBlock">
         <h2 class="subHeadings csSectionTitle">PITCH OG TILBAKEMELDINGER</h2>
-        <section>
-          <div class="csSingle">
-            <p class="aboutText">
-              Vi pitchet Klar for livet for en jury i konkurranse med flere
-              andre team på HealthHACK 2026.
-            </p>
-            <p class="aboutText">
-              Juryen likte at vi bygde videre på plattformer Rælingen kommune
-              allerede bruker i stedet for å foreslå et dyrt og nytt system. De
-              trakk frem hvor praktisk og skalerbart konseptet var, og satte
-              pris på at det var basert på ekte brukerbehov og ikke teknologi
-              for teknologiens skyld.
-            </p>
-            <div class="imageRow">
-              <img
-                src="Assets/Klar for livet/HealthHackIntro.webp"
-                alt="Deltakere ser på åpningen av HealthHACK 2026"
-              />
-              <img
-                src="Assets/Klar for livet/KlarForLivetGroupPhoto.webp"
-                alt="Klar for livet-teamet med bronsediplomet"
-              />
-            </div>
-            <div class="imageRow">
-              <img
-                src="Assets/Klar for livet/HackathonGroupPhoto.webp"
-                alt="Alle deltakerne på HealthHACK 2026"
-              />
-              <img
-                src="Assets/Klar for livet/GroupPhoto.webp"
-                alt="Nærbilde av Klar for livet-teamet"
-              />
-            </div>
+        <div class="csSingle">
+          <p class="aboutText">
+            Vi pitchet Klar for livet for en jury i konkurranse med flere
+            andre team på HealthHACK 2026.
+          </p>
+          <p class="aboutText">
+            Juryen likte at vi bygde videre på plattformer Rælingen kommune
+            allerede bruker i stedet for å foreslå et dyrt og nytt system. De
+            trakk frem hvor praktisk og skalerbart konseptet var, og satte
+            pris på at det var basert på ekte brukerbehov og ikke teknologi
+            for teknologiens skyld.
+          </p>
+          <div class="imageGrid">
+            <img
+              src="Assets/Klar for livet/HealthHackIntro.webp"
+              alt="Deltakere ser på åpningen av HealthHACK 2026"
+            />
+            <img
+              src="Assets/Klar for livet/KlarForLivetGroupPhoto.webp"
+              alt="Klar for livet-teamet med bronsediplomet"
+            />
           </div>
-        </section>
-      </div>
+          <div class="imageGrid">
+            <img
+              src="Assets/Klar for livet/HackathonGroupPhoto.webp"
+              alt="Alle deltakerne på HealthHACK 2026"
+            />
+            <img
+              src="Assets/Klar for livet/GroupPhoto.webp"
+              alt="Nærbilde av Klar for livet-teamet"
+            />
+          </div>
+        </div>
+      </section>
 
-      <div class="csSectionBlock">
+      <section class="csSectionBlock">
         <h2 class="subHeadings csSectionTitle">REFLEKSJON</h2>
-        <section>
-          <div class="csSingle">
-            <p class="aboutText">
-              HealthHACK 2026 var mitt tredje hackathon, og det første jeg vant.
-              Fra tidligere konkurranser lærte jeg hvor viktig god
-              historiefortelling er, støttet av research, begrunnelser og et
-              menneskesentrert perspektiv.
-            </p>
-            <p class="aboutText">
-              Den korte tidsrammen utfordret meg til å ta raske beslutninger og
-              stole på min egen prosess, og til å ta styringen når teamet
-              trengte retning. Som eneste interaksjonsdesigner i teamet tok jeg
-              på meg mange ulike oppgaver. Jeg ledet redesignet av Rælingen
-              kommunes nettside og Instagram-prototype, redigerte
-              <span lang="en">reel</span>-videoen, lagde
-              PowerPoint-presentasjonen og holdt pitchen.
-            </p>
-            <p class="aboutText">
-              Den mest utfordrende og verdifulle lærdommen var å snevre inn et
-              åpent oppdrag raskt og målrettet. Hvis vi hadde hatt mer tid,
-              skulle jeg gjerne ha snakket direkte med nevrodivergente unge
-              voksne, intervjuet flere veiledere og gjennomført ordentlig
-              brukertesting for å validere konseptet før pitchen.
-            </p>
-          </div>
-        </section>
-      </div>
+        <div class="csSingle">
+          <p class="aboutText">
+            HealthHACK 2026 var mitt tredje hackathon, og det første jeg vant.
+            Fra tidligere konkurranser lærte jeg hvor viktig god
+            historiefortelling er, støttet av research, begrunnelser og et
+            menneskesentrert perspektiv.
+          </p>
+          <p class="aboutText">
+            Den korte tidsrammen utfordret meg til å ta raske beslutninger og
+            stole på min egen prosess, og til å ta styringen når teamet
+            trengte retning. Som eneste interaksjonsdesigner i teamet tok jeg
+            på meg mange ulike oppgaver. Jeg ledet redesignet av Rælingen
+            kommunes nettside og Instagram-prototype, redigerte
+            <span lang="en">reel</span>-videoen, lagde
+            PowerPoint-presentasjonen og holdt pitchen.
+          </p>
+          <p class="aboutText">
+            Den mest utfordrende og verdifulle lærdommen var å snevre inn et
+            åpent oppdrag raskt og målrettet. Hvis vi hadde hatt mer tid,
+            skulle jeg gjerne ha snakket direkte med nevrodivergente unge
+            voksne, intervjuet flere veiledere og gjennomført ordentlig
+            brukertesting for å validere konseptet før pitchen.
+          </p>
+        </div>
+      </section>
 
       <p class="csBackLink">
         <a href="./index.html#case-studies"
@@ -450,7 +442,7 @@
       <a href="#top" class="backToTop">&uarr; Til toppen</a>
     </main>
     <footer>
-      <div class="footerInfo">© Lin Wei Lam</div>
+      <p class="footerInfo">© Lin Wei Lam</p>
     </footer>
   </body>
 </html>

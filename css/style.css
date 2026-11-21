@@ -34,6 +34,13 @@
 
 /* ===== Base ===== */
 
+/* Keeps anchor targets and keyboard focus clear of the sticky nav (top)
+   and the fixed "Til toppen" button (bottom) */
+html {
+  scroll-padding-top: 5rem;
+  scroll-padding-bottom: 5rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -52,12 +59,13 @@ body {
 }
 
 main {
-  padding-bottom: 1.5rem;
+  padding-bottom: var(--space-m);
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: var(--font-heading);
 }
 
@@ -102,7 +110,7 @@ header {
 
 .siteName {
   margin: 0;
-  padding: 1rem;
+  padding: var(--space-s);
   text-align: center;
   font-family: var(--font-heading);
   font-size: 1.25rem;
@@ -110,15 +118,11 @@ header {
   letter-spacing: 0.2rem;
 }
 
-nav.langSwitch {
+.langSwitch {
   position: absolute;
   top: 50%;
   right: var(--container-gutter);
   transform: translateY(-50%);
-  display: block;
-  z-index: auto;
-  padding: 0;
-  background: none;
   font-size: 0.95rem;
   letter-spacing: 0.05rem;
 }
@@ -131,16 +135,16 @@ nav.langSwitch {
   min-width: 44px;
   min-height: 44px;
   box-sizing: border-box;
-  padding: 0.5rem 0.25rem;
+  padding: var(--space-xs) 0.25rem;
   vertical-align: middle;
-}
-
-.langSwitch a:hover {
-  color: var(--color-brown);
 }
 
 .langSwitch strong {
   color: var(--color-accent);
+}
+
+.langSwitch a:hover {
+  color: var(--color-brown);
 }
 
 footer {
@@ -150,6 +154,7 @@ footer {
 }
 
 .footerInfo {
+  margin: 0;
   color: var(--color-brown);
   font-size: 1rem;
   display: flex;
@@ -159,8 +164,8 @@ footer {
 
 /* ===== Navigation ===== */
 
-nav {
-  padding: 1rem;
+.mainNav {
+  padding: var(--space-s);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -171,11 +176,14 @@ nav {
 }
 
 .navigationBar {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem 3rem;
+  gap: var(--space-xs) 3rem;
   max-width: 100%;
 }
 
@@ -239,6 +247,7 @@ a u {
 a.caseStudyLink,
 .csBackLink a,
 a.backToTop,
+a.skipLink,
 .home a.heroButton {
   border: 1px solid var(--color-brown);
   border-radius: var(--radius-sm);
@@ -253,30 +262,51 @@ a.backToTop,
 a.caseStudyLink:hover,
 .csBackLink a:hover,
 a.backToTop:hover,
+a.skipLink:hover,
 .home a.heroButton:hover {
   background-color: var(--color-brown);
   color: var(--color-bg);
 }
 
 a.caseStudyLink,
-.csBackLink a {
+.csBackLink a,
+a.backToTop,
+a.skipLink {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   box-sizing: border-box;
-  padding: 0.5rem 1.2rem;
+}
+
+a.caseStudyLink,
+.csBackLink a {
+  padding: var(--space-xs) 1.2rem;
 }
 
 a.backToTop {
   position: fixed;
-  right: 1.5rem;
-  bottom: 1.5rem;
+  right: var(--space-m);
+  bottom: var(--space-m);
   z-index: 200;
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  box-sizing: border-box;
-  padding: 0.5rem 1rem;
+  padding: var(--space-xs) var(--space-s);
+}
+
+/* "Hopp til hovedinnhold": first stop for the keyboard, hidden above the page until focused */
+a.skipLink {
+  position: absolute;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  z-index: 300;
+  padding: var(--space-xs) 1.2rem;
+}
+
+a.skipLink:not(:focus) {
+  transform: translateY(-200%);
+}
+
+/* <main> receives focus from the skip link; the link itself shows where you are */
+main:focus {
+  outline: none;
 }
 
 /* ===== Keyboard focus ===== */
@@ -314,8 +344,6 @@ iframe:focus-visible {
   letter-spacing: 0.05em;
   overflow-wrap: anywhere;
   hyphens: auto;
-
-  scroll-margin-top: 5rem;
 }
 
 .subHeadings::after {
@@ -328,7 +356,7 @@ iframe:focus-visible {
 }
 
 .home .subHeadings {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-s);
 }
 
 /* ===== Front page ===== */
@@ -337,7 +365,7 @@ iframe:focus-visible {
 
 .home .profileInnerBox {
   align-items: center;
-  padding-block: 1.5rem 2rem;
+  padding-block: var(--space-m) 2rem;
 }
 
 .home .profileInnerBox .aboutImage {
@@ -346,7 +374,7 @@ iframe:focus-visible {
 }
 
 .home hgroup {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-s);
 }
 
 .home .heroTitle {
@@ -364,26 +392,22 @@ iframe:focus-visible {
   font-weight: 500;
 }
 
-.home .heroIntro,
-.home .heroStatus {
-  margin: 0 0 0.75rem;
-}
-
 .home .heroIntro {
   max-width: 65ch;
+  margin: 0 0 0.75rem;
   font-size: 1.2rem;
   line-height: 1.55;
 }
 
 .home .heroStatus {
-  margin-top: 1.25rem;
+  margin: 1.25rem 0 0.75rem;
 }
 
 .home .heroActions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin: 1.5rem 0 0;
+  margin: var(--space-m) 0 0;
 }
 
 .home a.heroButton {
@@ -417,7 +441,7 @@ iframe:focus-visible {
 .home .heroLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 1.5rem;
+  gap: 0 var(--space-m);
   margin: 0;
 }
 
@@ -436,25 +460,25 @@ iframe:focus-visible {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 3rem;
   padding-block: 2rem;
-  margin-bottom: 40px;
+  margin-bottom: var(--space-l);
 }
 
 .caseStudyCard {
   background-color: var(--color-surface);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
+  padding: var(--space-m);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
 .caseStudyImage {
-  height: 20rem;
+  aspect-ratio: 16 / 10;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-s);
   box-sizing: border-box;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -471,7 +495,7 @@ iframe:focus-visible {
   font-family: inherit;
   font-size: 1.3rem;
   font-weight: bold;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 var(--space-xs) 0;
 }
 
 .caseStudyText {
@@ -491,7 +515,7 @@ iframe:focus-visible {
   box-sizing: border-box;
   display: flex;
   align-items: flex-start;
-  gap: 2.5rem;
+  gap: var(--space-l);
 }
 
 .aboutImage {
@@ -521,27 +545,24 @@ iframe:focus-visible {
 }
 
 @media only screen and (min-width: 768px) {
-  #about-me + section .aboutImage {
-    flex-basis: 34.5%;
-  }
-
-  html[lang="en"] #about-me + section .aboutImage {
-    flex-basis: 36%;
-  }
-
-  #about-me + section .aboutContent {
-    max-width: 75ch;
-  }
-
-  #about-me + section .aboutSingle {
+  .aboutSection .aboutSingle {
     align-items: stretch;
   }
 
-  #about-me + section .aboutImage {
+  .aboutSection .aboutImage {
     position: relative;
+    flex-basis: 34.5%;
   }
 
-  #about-me + section .aboutImage img {
+  html[lang="en"] .aboutSection .aboutImage {
+    flex-basis: 36%;
+  }
+
+  .aboutSection .aboutContent {
+    max-width: 75ch;
+  }
+
+  .aboutSection .aboutImage img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -572,9 +593,9 @@ main > section + .csSectionBlock {
 
 .csSingle {
   --column-max: 736px;
-  max-width: calc(var(--column-max) + 4rem);
+  max-width: calc(var(--column-max) + 2 * var(--container-gutter));
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-gutter);
   box-sizing: border-box;
 }
 
@@ -589,7 +610,7 @@ main > section + .csSectionBlock {
   max-width: 800px;
   margin: 0 auto;
 
-  padding: 2rem 2rem calc(var(--section-gap) / 2);
+  padding: 2rem var(--container-gutter) calc(var(--section-gap) / 2);
   text-align: center;
   box-sizing: border-box;
 }
@@ -603,7 +624,7 @@ main > section + .csSectionBlock {
 }
 
 .csEyebrow {
-  margin: 0 0 0.5rem;
+  margin: 0 0 var(--space-xs);
   color: var(--color-accent);
   font-size: 0.85rem;
   font-weight: bold;
@@ -631,9 +652,9 @@ main > section + .csSectionBlock {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   list-style: none;
-  margin: 1rem 0 0;
+  margin: var(--space-s) 0 0;
   padding: 0;
 }
 
@@ -651,7 +672,7 @@ main > section + .csSectionBlock {
 .csSummaryStats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: var(--space-s);
   list-style: none;
   hyphens: auto;
   padding: 0 0 1.25rem;
@@ -695,8 +716,8 @@ main > section + .csSectionBlock {
   display: grid;
   grid-template-columns: repeat(4, auto);
   justify-content: space-between;
-  gap: 1rem 1.5rem;
-  margin: 1.5rem 0 0;
+  gap: var(--space-s) var(--space-m);
+  margin: var(--space-m) 0 0;
   padding-top: 1.25rem;
   border-top: 1px solid var(--color-divider-light);
   font-size: 0.9rem;
@@ -704,16 +725,23 @@ main > section + .csSectionBlock {
 }
 
 .csSummaryMeta dt {
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 0.75rem;
   margin-bottom: 0.2rem;
-  color: var(--color-brown);
 }
 
 .csSummaryMeta dd {
   margin: 0;
+}
+
+/* When text is enlarged (browser text zoom), the details row drops to one column
+   instead of overflowing. Measured in em, so it never triggers at normal text size. */
+.csSingle:has(> .csSummaryMeta) {
+  container-type: inline-size;
+}
+
+@container (max-width: 40em) {
+  .csSingle .csSummaryMeta {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* --- Text --- */
@@ -728,25 +756,56 @@ main > section + .csSectionBlock {
 }
 
 .csSubTitle {
-  font-family: var(--font-heading);
   font-weight: bold;
   font-size: 1.15rem;
   line-height: 1.3;
   margin: var(--space-xl) 0 var(--space-xs);
 }
 
+/* Taller tap area (at least 44px) without moving the surrounding text */
+.csExternalLink {
+  padding-block: 0.875rem;
+}
+
 .csSpacedList li + li {
   margin-top: 0.75em;
 }
 
+/* Own key statements only: hypothesis, key insight, problem statement.
+   Quotes from other people use .csQuote. */
 .csCallout {
   margin: var(--space-l) 0;
   padding: 0.25rem 0 0.25rem 1.25rem;
   border-left: 4px solid var(--color-accent);
+}
+
+.csCallout .csLabel {
+  margin: 0 0 0.35rem;
+}
+
+/* Stays below the h4 headings (1.05rem, bold) */
+.csCalloutText {
+  margin: 0;
+  font-family: var(--font-heading);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.45;
   text-wrap: pretty;
+}
+
+/* --- Labels (Tema, Før/Etter, details row) --- */
+
+.csLabel,
+.csFigure .csLabel {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+}
+
+.csFigure .csLabel {
+  margin-top: 0.75rem;
 }
 
 /* --- Findings cards --- */
@@ -761,21 +820,15 @@ main > section + .csSectionBlock {
 }
 
 .csFinding + .csFinding {
-  margin-top: 2.5rem;
+  margin-top: var(--space-l);
 }
 
-.csFindingLabel {
+.csFinding .csLabel {
   margin: 0 0 0.35rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 0.75rem;
-  color: var(--color-accent);
 }
 
 .csFindingTitle {
   margin: 0 0 var(--space-xs);
-  font-family: var(--font-heading);
   font-weight: bold;
   font-size: 1.05rem;
   line-height: 1.3;
@@ -788,13 +841,13 @@ main > section + .csSectionBlock {
 }
 
 .csFinding .csQuote {
-  margin: 1rem 0 0;
+  margin: var(--space-s) 0 0;
 }
 
 /* --- Participant quotes --- */
 
 .csQuote {
-  margin: var(--space-m) 0 var(--space-m) 1.5rem;
+  margin: var(--space-m) 0 var(--space-m) var(--space-m);
 }
 
 .csQuote blockquote {
@@ -820,32 +873,22 @@ main > section + .csSectionBlock {
   content: "– ";
 }
 
-/* --- Requirement boxes --- */
-
-.requirementsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin: var(--space-m) 0;
-}
-
-.requirementBox {
-  border-radius: var(--radius-md);
-  padding: 1rem 1.5rem;
-  text-align: center;
-  background-color: var(--color-surface);
-}
-
 /* --- Info cards --- */
 
-.InfoCardOverview {
+.infoCardOverview {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-s);
   margin: var(--space-m) 0;
   justify-content: center;
 }
 
-.InfoCardBox {
+/* Four cards in a 2 × 2 grid */
+.infoCardOverview--grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.infoCardBox {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -853,7 +896,7 @@ main > section + .csSectionBlock {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
-  padding: 0.5rem;
+  padding: var(--space-s);
   text-align: center;
   background-color: var(--color-surface);
   min-height: 3rem;
@@ -861,129 +904,111 @@ main > section + .csSectionBlock {
   hyphens: auto;
 }
 
-.InfoCardBox > * {
+.infoCardBox > * {
   max-width: 100%;
 }
 
-.InfoCardLabel {
+.infoCardLabel {
+  margin: 0;
   font-weight: bold;
-  margin-bottom: 0.3rem;
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
 }
 
-.InfoCardNumber {
+.infoCardText {
+  margin: 0.3rem 0 0;
   font-size: 1rem;
-  margin: 0;
 }
 
-.InfoCardText {
-  font-size: 0.85rem;
-  line-height: 1.4;
-  margin: 0;
-}
-
-.InfoCardOverview--goals .InfoCardBox {
-  align-items: flex-start;
-  justify-content: flex-start;
-  text-align: left;
-  padding: var(--space-s);
-}
-
-.InfoCardList {
+.infoCardList {
   list-style: disc;
   padding: 0 0 0 1.1rem;
-  margin: 0;
+  margin: 0.3rem 0 0;
   text-align: left;
   font-size: 0.85rem;
 }
 
-.InfoCardList li::marker {
+.infoCardList li::marker {
   color: var(--color-brown-light);
 }
 
 /* --- Images & video --- */
 
-.case-image {
+.caseImage {
   width: 100%;
   max-width: 900px;
   margin: var(--space-l) auto;
-  border-radius: var(--radius-md);
   display: block;
 }
 
-.case-image--small {
-  max-width: 500px;
+/* Rounded corners for every content image and video */
+.caseImage,
+.imageGrid img,
+.sideBySideImages img,
+.videoRow iframe {
+  border-radius: var(--radius-md);
 }
 
-iframe.case-image {
+/* Keeps width/height attributes from stretching images */
+img.caseImage {
+  height: auto;
+}
+
+iframe.caseImage {
   border: 0;
 }
 
+/* Two images side by side (one column on mobile) */
 .imageGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-s);
   align-items: start;
   max-width: 900px;
   margin: var(--space-l) auto;
 }
 
 .imageGrid img {
-  width: 100%;
   display: block;
-  border-radius: var(--radius-md);
-}
-
-.imageRow {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: flex-start;
-  max-width: 900px;
-  margin: var(--space-l) auto;
-}
-
-.imageRow img {
-  width: calc(50% - 0.5rem);
-  border-radius: var(--radius-md);
+  width: 100%;
 }
 
 .videoRow img,
 .videoRow iframe {
-  flex: 1 1 0;
-  min-width: 0;
+  width: 100%;
   height: 500px;
   margin: 0;
   border: 0;
-  border-radius: var(--radius-md);
   object-fit: cover;
 }
 
+/* One large image next to a column of smaller ones, always 50/50 */
 .sideBySideImages {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-s);
   max-width: 900px;
   margin: var(--space-l) auto;
   align-items: stretch;
 }
 
+.sideBySideImages > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 .sideBySideImages > img {
-  width: 50%;
-  border-radius: var(--radius-md);
   object-fit: cover;
 }
 
 .imageColumn {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 50%;
+  gap: var(--space-s);
 }
 
 .imageColumn img {
+  display: block;
   width: 100%;
-  border-radius: var(--radius-md);
 }
 
 /* --- Figures with captions --- */
@@ -993,51 +1018,23 @@ iframe.case-image {
   margin: var(--space-l) auto;
 }
 
-.csFigure .case-image {
+.csFigure .caseImage {
   margin: 0;
 }
 
 .csFigure figcaption {
-  margin-top: 0.5rem;
+  margin-top: var(--space-xs);
   font-size: 0.85rem;
   line-height: 1.4;
   color: var(--color-text-soft);
   text-align: center;
 }
 
-/* Før/Etter labels: same style as the "Tema" labels in Hovedfunn */
-.csFigureRow--equal .csFigure figcaption {
-  margin-top: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 0.75rem;
-  color: var(--color-accent);
-}
-
-/* Captioned images inside rows, columns and grids */
-.imageRow > .csFigure,
+/* Captioned images inside grids and columns */
 .sideBySideImages > .csFigure,
 .imageColumn > .csFigure,
 .imageGrid > .csFigure {
   margin: 0;
-}
-
-.imageRow > .csFigure,
-.sideBySideImages > .csFigure {
-  width: calc(50% - 0.5rem);
-}
-
-.videoRow > .csFigure {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.imageRow .csFigure img,
-.imageColumn .csFigure img,
-.imageGrid .csFigure img {
-  display: block;
-  width: 100%;
 }
 
 /* The large image fills the height of the stacked column next to it */
@@ -1050,38 +1047,26 @@ iframe.case-image {
   flex: 1 1 0;
   min-height: 0;
   width: 100%;
-  border-radius: var(--radius-md);
   object-fit: cover;
 }
 
-.csFigureRow {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  align-items: start;
-  margin: var(--space-l) 0;
-}
-
-.csFigureRow .csFigure {
-  margin: 0;
-}
-
 @media only screen and (min-width: 768px) {
-  .csFigureRow--equal .case-image {
+  /* Før/Etter: both images get the same height */
+  .imageGrid--equal .caseImage {
     aspect-ratio: 5456 / 3522;
     object-fit: cover;
     object-position: top;
   }
 
   /* Før: show the whole screenshot; white fills the space above and below */
-  .csFigureRow--equal .csFigure:first-child .case-image {
+  .imageGrid--equal .csFigure:first-child .caseImage {
     object-fit: contain;
     object-position: center;
     background-color: #ffffff;
   }
 
   /* Image on the left on desktop; text stays first in the HTML so it comes first on mobile */
-  .csSplit > .case-image {
+  .csSplit > .csFigure {
     order: -1;
   }
 }
@@ -1097,10 +1082,6 @@ iframe.case-image {
 
 .csSplitText > :last-child {
   margin-bottom: 0;
-}
-
-.csSplit .case-image {
-  margin: 0;
 }
 
 /* --- Edges --- */
@@ -1119,15 +1100,11 @@ iframe.case-image {
 
 @media only screen and (max-width: 1050px) {
   .navigationBar {
-    gap: 1.5rem;
+    gap: var(--space-m);
   }
 
   .caseStudyGrid {
     gap: 2rem;
-  }
-
-  .caseStudyImage {
-    height: 16rem;
   }
 
   .home .profileInnerBox .aboutImage {
@@ -1153,11 +1130,11 @@ iframe.case-image {
   }
 
   ul {
-    padding-left: 1.5rem;
+    padding-left: var(--space-m);
   }
 
   .siteName {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem var(--space-s);
     font-size: 1.1rem;
   }
 
@@ -1173,20 +1150,20 @@ iframe.case-image {
     text-align: left;
   }
 
-  nav.langSwitch {
+  .langSwitch {
     position: static;
     transform: none;
     font-size: 0.85rem;
   }
 
-  nav {
-    padding: 0.75rem 1rem;
+  .mainNav {
+    padding: 0.75rem var(--space-s);
   }
 
   .navigationBar {
     width: 100%;
     max-width: 32rem;
-    gap: 0.5rem;
+    gap: var(--space-xs);
   }
 
   .navigationButton {
@@ -1200,15 +1177,18 @@ iframe.case-image {
   }
 
   a.backToTop {
-    right: 1rem;
-    bottom: 1rem;
+    right: var(--space-s);
+    bottom: var(--space-s);
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
   }
 
+  html {
+    scroll-padding-top: 4.5rem;
+  }
+
   .subHeadings {
     font-size: 1.3rem;
-    scroll-margin-top: 4.5rem;
   }
 
   .profileInnerBox {
@@ -1237,7 +1217,7 @@ iframe.case-image {
 
   .aboutSingle {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--space-m);
   }
 
   .aboutImage {
@@ -1248,11 +1228,7 @@ iframe.case-image {
   }
 
   .csHero {
-    padding: 1.5rem 1rem calc(var(--section-gap) / 2);
-  }
-
-  .csSingle {
-    padding: 0 1rem;
+    padding-top: var(--space-m);
   }
 
   .csSummaryStats {
@@ -1268,61 +1244,36 @@ iframe.case-image {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .InfoCardOverview {
-    flex-wrap: wrap;
-  }
-
-  .InfoCardBox {
-    flex: 1 1 calc(50% - 0.5rem);
-  }
-
-  .InfoCardOverview--goals {
+  /* All card groups stack in one column */
+  .infoCardOverview {
     flex-direction: column;
   }
 
+  .infoCardOverview--grid,
   .imageGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .imageRow,
   .sideBySideImages {
     flex-direction: column;
-    align-items: stretch;
   }
 
-  .imageRow img,
-  .sideBySideImages > img,
-  .imageColumn {
-    width: 100%;
-  }
-
-  .imageRow > .csFigure,
-  .sideBySideImages > .csFigure {
-    width: 100%;
-  }
-
-  .videoRow > .csFigure {
-    flex: none;
-  }
-
+  .sideBySideImages > *,
   .sideBySideImages > .csFigure img {
     flex: none;
+    width: 100%;
   }
 
-  .csFigureRow,
   .csSplit {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-m);
   }
 
   .videoRow img {
-    flex: none;
     height: auto;
   }
 
   .videoRow iframe {
-    flex: none;
-    width: 100%;
     height: 28rem;
   }
 }
@@ -1339,18 +1290,16 @@ iframe.case-image {
   }
 
   .caseStudyCard {
-    padding: 1rem;
-  }
-
-  .caseStudyImage {
-    height: 12rem;
+    padding: var(--space-s);
   }
 
   .home a.heroButton {
     flex: 1 1 100%;
   }
+}
 
-  .requirementsGrid {
-    grid-template-columns: minmax(0, 1fr);
-  }
+/* Image wrapped in a link to its full-size file (focus ring comes from a:focus-visible) */
+.csImageLink {
+  display: block;
+  border-radius: var(--radius-md);
 }

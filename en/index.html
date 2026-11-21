@@ -27,7 +27,8 @@
     />
     <title>Lin Wei Lam – UX &amp; Interaction Designer</title>
   </head>
-  <body class="home">
+  <body id="top" class="home">
+    <a class="skipLink" href="#main">Skip to main content</a>
     <header>
       <p class="siteName">Lin Wei Lam</p>
       <nav class="langSwitch" aria-label="Language">
@@ -36,100 +37,100 @@
         <strong lang="en" aria-current="true">English</strong>
       </nav>
     </header>
-    <nav aria-label="Main menu">
-      <span class="navigationBar">
-        <span class="navigationButton">
+    <nav class="mainNav" aria-label="Main menu">
+      <ul class="navigationBar">
+        <li class="navigationButton">
           <a href="./index.html">HOME</a>
-        </span>
-        <span class="navigationButton">
+        </li>
+        <li class="navigationButton">
           <a href="./index.html#case-studies">PROJECTS</a>
-        </span>
-        <span class="navigationButton">
+        </li>
+        <li class="navigationButton">
           <a href="./index.html#about-me">ABOUT ME</a>
-        </span>
-      </span>
+        </li>
+      </ul>
     </nav>
-    <main>
+    <main id="main" tabindex="-1">
       <section>
-        <article>
-          <div class="profileInnerBox aboutSingle container">
-            <div class="aboutImage">
-              <img
-                src="../Assets/ProfileImage.webp"
-                alt="Lin Wei Lam in a brown suit smiling at the camera"
-              />
-            </div>
-            <div class="aboutContent">
-              <hgroup>
-                <h1 class="heroTitle">Hi, I'm Lin</h1>
-                <p class="heroSubtitle">
-                  UX &amp; Interaction Designer based in Oslo
-                </p>
-              </hgroup>
-              <p class="heroIntro">
-                I love learning, finding the fun in what I do and asking why.
-                It's what drives me to create accessible, intuitive experiences
-                that actually work for people.
+        <div class="profileInnerBox aboutSingle container">
+          <div class="aboutImage">
+            <img
+              src="../Assets/ProfileImage.webp"
+              alt="Lin Wei Lam in a brown suit smiling at the camera"
+            />
+          </div>
+          <div class="aboutContent">
+            <hgroup>
+              <h1 class="heroTitle">Hi, I'm Lin</h1>
+              <p class="heroSubtitle">
+                UX &amp; Interaction Designer based in Oslo
               </p>
-              <p class="heroStatus">
-                Interaction Design student at Fagskolen Kristiania | Open to
-                part-time roles and internships
-              </p>
-              <div class="heroActions">
-                <a class="heroButton heroButtonPrimary" href="#case-studies"
-                  >View my projects</a
+            </hgroup>
+            <p class="heroIntro">
+              I love learning, finding the fun in what I do and asking why.
+              It's what drives me to create accessible, intuitive experiences
+              that actually work for people.
+            </p>
+            <p class="heroStatus">
+              Interaction Design student at Fagskolen Kristiania | Open to
+              part-time roles and internships
+            </p>
+            <div class="heroActions">
+              <a class="heroButton heroButtonPrimary" href="#case-studies"
+                >View my projects</a
+              >
+              <a
+                class="heroButton"
+                href="../Assets/Lin-Wei-Lam-ENG-CV.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg
+                  class="inlineIcon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
                 >
-                <a
-                  class="heroButton"
-                  href="../Assets/Lin-Wei-Lam-ENG-CV.pdf"
-                  target="_blank"
-                  rel="noopener"
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19h14"
+                  /></svg
+                ><span>Download CV (EN)</span
+                  ><span class="visuallyHidden"> (PDF, opens in a new tab)</span>
+              </a>
+              <a
+                class="heroButton"
+                href="../Assets/Lin-Wei-Lam-NOR-CV.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg
+                  class="inlineIcon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
                 >
-                  <svg
-                    class="inlineIcon"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19h14"
-                    /></svg
-                  ><span>Download CV (EN)</span>
-                </a>
-                <a
-                  class="heroButton"
-                  href="../Assets/Lin-Wei-Lam-NOR-CV.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <svg
-                    class="inlineIcon"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19h14"
-                    /></svg
-                  ><span>Download CV (NO)</span>
-                </a>
-              </div>
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19h14"
+                  /></svg
+                ><span>Download CV (NO)</span
+                  ><span class="visuallyHidden"> (PDF, opens in a new tab)</span>
+              </a>
             </div>
           </div>
-        </article>
+        </div>
       </section>
-      <h2 class="subHeadings" id="case-studies">PROJECTS</h2>
       <section>
+        <h2 class="subHeadings" id="case-studies">PROJECTS</h2>
         <div class="caseStudyGrid container">
           <article class="caseStudyCard">
             <div class="caseStudyImage">
@@ -139,7 +140,7 @@
               />
             </div>
             <h3 class="caseStudyTitle">
-              <span lang="no">Verdt å vite</span> &ndash; AI-powered Financial
+              <span lang="no">Verdt å vite</span>: AI-powered Financial
               Understanding
             </h3>
             <p class="caseStudyText">
@@ -158,7 +159,7 @@
               />
             </div>
             <h3 class="caseStudyTitle">
-              <span lang="no">Klar for livet</span> &ndash; A Guide for the
+              <span lang="no">Klar for livet</span>: A Guide for the
               Household
             </h3>
             <p class="caseStudyText">
@@ -170,15 +171,32 @@
               >See how I worked &rarr;</a
             >
           </article>
+          <article class="caseStudyCard">
+            <div class="caseStudyImage">
+              <img
+                src="../Assets/Tansa/HeroFinalCard.webp"
+                alt="New proposal for Tansa's hero section with the heading &quot;Ett språk for hele organisasjonen&quot; (One language for the whole organisation)"
+              />
+            </div>
+            <h3 class="caseStudyTitle">Tansa: A Clearer First Impression</h3>
+            <p class="caseStudyText">
+              Research and a redesigned hero section for a Norwegian language
+              technology company. I led the research and the presentation to the
+              client.
+            </p>
+            <a class="caseStudyLink" href="./CaseStudyThree.html"
+              >See how I worked &rarr;</a
+            >
+          </article>
         </div>
       </section>
-      <h2 class="subHeadings" id="about-me">ABOUT ME</h2>
-      <section>
+      <section class="aboutSection">
+        <h2 class="subHeadings" id="about-me">ABOUT ME</h2>
         <div class="aboutSingle container">
           <div class="aboutImage">
             <img
               src="../Assets/AboutMe.webp"
-              alt="Collage of Lin Wei Lam in front of a MacBook, making costumes, at her graduation and shoveling snow at the cabin."
+              alt="Collage of Lin Wei Lam in front of a MacBook, making costumes, at her graduation and shovelling snow at the cabin."
             />
           </div>
           <div class="aboutContent">
@@ -269,7 +287,7 @@
       <a href="#top" class="backToTop">&uarr; Back to top</a>
     </main>
     <footer>
-      <div class="footerInfo">© Lin Wei Lam</div>
+      <p class="footerInfo">© Lin Wei Lam</p>
     </footer>
   </body>
 </html>
