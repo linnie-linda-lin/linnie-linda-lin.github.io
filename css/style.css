@@ -458,8 +458,8 @@ iframe:focus-visible {
 .caseStudyGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3rem;
-  padding-block: 2rem;
+  gap: var(--space-xl);
+  padding-block: var(--space-l) 2rem;
   margin-bottom: var(--space-l);
 }
 
@@ -478,7 +478,7 @@ iframe:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--space-s);
+  margin-bottom: var(--space-m);
   box-sizing: border-box;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -495,12 +495,12 @@ iframe:focus-visible {
   font-family: inherit;
   font-size: 1.3rem;
   font-weight: bold;
-  margin: 0 0 var(--space-xs) 0;
+  margin: 0 0 var(--space-s) 0;
 }
 
 .caseStudyText {
   flex-grow: 1;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 var(--space-m) 0;
 }
 
 .caseStudyLink {
@@ -544,30 +544,90 @@ iframe:focus-visible {
   margin-bottom: 0;
 }
 
+/* Interview card: last item in the About text column.
+   Thumbnail on top below 768px, beside the text from 768px */
+.aboutFeature {
+  margin-top: var(--space-l);
+  padding: var(--space-s);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+}
+
+.aboutFeature img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+.aboutFeature .csLabel {
+  margin: var(--space-s) 0 var(--space-xs);
+}
+
 @media only screen and (min-width: 768px) {
+  .aboutFeature {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: var(--space-s);
+    align-items: center;
+  }
+
+  .aboutFeature .csLabel {
+    margin-top: 0;
+  }
+}
+
+/* Tablet: About section stacks like on mobile (collage, text, interview card) */
+@media only screen and (min-width: 768px) and (max-width: 1050px) {
+  .aboutSection .aboutSingle {
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .aboutSection .aboutImage {
+    flex: none;
+    width: 100%;
+    max-width: 25rem;
+    margin-inline: auto;
+  }
+
+  .aboutSection .aboutContent {
+    flex: none;
+    width: 100%;
+    max-width: 75ch;
+    margin-inline: auto;
+  }
+}
+
+/* Desktop: collage on the left, text and interview card on the right.
+   The collage column is wide enough for the 2:3 collage to be a bit taller
+   than the text, and the space above the card grows so the card's bottom
+   lines up with the collage's bottom. */
+@media only screen and (min-width: 1051px) {
   .aboutSection .aboutSingle {
     align-items: stretch;
   }
 
   .aboutSection .aboutImage {
-    position: relative;
-    flex-basis: 34.5%;
-  }
-
-  html[lang="en"] .aboutSection .aboutImage {
-    flex-basis: 36%;
+    flex-basis: 38%;
   }
 
   .aboutSection .aboutContent {
     max-width: 75ch;
+    display: flex;
+    flex-direction: column;
   }
 
-  .aboutSection .aboutImage img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .aboutSection .aboutText {
+    margin-inline: 0;
+  }
+
+  .aboutSection .heroLinks {
+    margin-bottom: var(--space-l);
+  }
+
+  .aboutSection .aboutFeature {
+    margin-top: auto;
   }
 }
 
@@ -1104,7 +1164,7 @@ iframe.caseImage {
   }
 
   .caseStudyGrid {
-    gap: 2rem;
+    gap: var(--space-l);
   }
 
   .home .profileInnerBox .aboutImage {
