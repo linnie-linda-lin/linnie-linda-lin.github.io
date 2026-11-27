@@ -544,10 +544,17 @@ iframe:focus-visible {
   margin-bottom: 0;
 }
 
-/* Interview card: last item in the About text column.
-   Thumbnail on top below 768px, beside the text from 768px */
+/* Interview card: below the two About columns, at the full width of the
+   section. Stacked (screenshot on top) up to 1050px, side by side above. */
+.aboutSection .aboutSingle {
+  padding-bottom: 0;
+}
+
+.aboutFeatureWrap {
+  padding-block: calc(var(--section-gap) / 2) 2rem;
+}
+
 .aboutFeature {
-  margin-top: var(--space-l);
   padding: var(--space-s);
   border: 1px solid var(--color-divider);
   border-radius: var(--radius-md);
@@ -562,19 +569,6 @@ iframe:focus-visible {
 
 .aboutFeature .csLabel {
   margin: var(--space-s) 0 var(--space-xs);
-}
-
-@media only screen and (min-width: 768px) {
-  .aboutFeature {
-    display: grid;
-    grid-template-columns: 140px minmax(0, 1fr);
-    gap: var(--space-s);
-    align-items: center;
-  }
-
-  .aboutFeature .csLabel {
-    margin-top: 0;
-  }
 }
 
 /* Tablet: About section stacks like on mobile (collage, text, interview card) */
@@ -599,35 +593,59 @@ iframe:focus-visible {
   }
 }
 
-/* Desktop: collage on the left, text and interview card on the right.
-   The collage column is wide enough for the 2:3 collage to be a bit taller
-   than the text, and the space above the card grows so the card's bottom
-   lines up with the collage's bottom. */
+/* Desktop: collage on the left, text on the right, in a centred row of
+   at most --about-max wide. The collage column is sized so the 2:3
+   collage ends about level with the text.
+   The interview card below uses the same centred width and grid: the
+   screenshot is as wide as the collage and the text starts where the
+   About text starts. The frame is a 1px shadow so it doesn't push the
+   screenshot off the collage's edges. */
 @media only screen and (min-width: 1051px) {
-  .aboutSection .aboutSingle {
-    align-items: stretch;
+  .aboutSection {
+    --about-collage: 37.5;
+    --about-max: 62.5rem;
+  }
+
+  .aboutSection .aboutSingle,
+  .aboutFeatureWrap {
+    max-width: calc(var(--about-max) + 2 * var(--container-gutter));
   }
 
   .aboutSection .aboutImage {
-    flex-basis: 38%;
-  }
-
-  .aboutSection .aboutContent {
-    max-width: 75ch;
-    display: flex;
-    flex-direction: column;
+    flex-basis: calc(var(--about-collage) * 1%);
   }
 
   .aboutSection .aboutText {
+    max-width: none;
     margin-inline: 0;
   }
 
-  .aboutSection .heroLinks {
-    margin-bottom: var(--space-l);
+  .aboutFeatureWrap {
+    container-type: inline-size;
   }
 
-  .aboutSection .aboutFeature {
-    margin-top: auto;
+  .aboutFeature {
+    display: grid;
+    grid-template-columns:
+      calc(var(--about-collage) * 1cqw)
+      minmax(0, 1fr);
+    column-gap: var(--space-l);
+    align-items: center;
+    padding: 0;
+    border: 0;
+    box-shadow: 0 0 0 1px var(--color-divider);
+  }
+
+  .aboutFeature img {
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+  }
+
+  .aboutFeatureBody {
+    padding: var(--space-s) var(--space-m) var(--space-s) 0;
+  }
+
+  .aboutFeature .csLabel {
+    margin-top: 0;
   }
 }
 
@@ -829,6 +847,12 @@ main > section + .csSectionBlock {
 
 .csSpacedList li + li {
   margin-top: 0.75em;
+}
+
+/* Terracotta bullets on body-text lists, matching the summary lists */
+.csSingle ul:not([class]) > li::marker,
+.csSingle .csSpacedList > li::marker {
+  color: var(--color-accent);
 }
 
 /* Own key statements only: hypothesis, key insight, problem statement.
@@ -1332,6 +1356,11 @@ iframe.caseImage {
   .csSplit {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-m);
+  }
+
+  /* Photo above the text on mobile, so the last paragraph leads straight into the callout below */
+  .csSplit--imageRight > .csFigure {
+    order: -1;
   }
 
   .videoRow img {
