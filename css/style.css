@@ -593,22 +593,17 @@ iframe:focus-visible {
   }
 }
 
-/* Desktop: collage on the left, text on the right, in a centred row of
-   at most --about-max wide. The collage column is sized so the 2:3
-   collage ends about level with the text.
-   The interview card below uses the same centred width and grid: the
+/* Desktop: collage on the left, text on the right, with the same outer
+   edges as the Projects grid. The square collage is sized so it ends
+   about level with the text, while the text keeps lines under about
+   90 characters.
+   The interview card below uses the same edges and grid: the
    screenshot is as wide as the collage and the text starts where the
    About text starts. The frame is a 1px shadow so it doesn't push the
    screenshot off the collage's edges. */
 @media only screen and (min-width: 1051px) {
   .aboutSection {
-    --about-collage: 37.5;
-    --about-max: 62.5rem;
-  }
-
-  .aboutSection .aboutSingle,
-  .aboutFeatureWrap {
-    max-width: calc(var(--about-max) + 2 * var(--container-gutter));
+    --about-collage: 46;
   }
 
   .aboutSection .aboutImage {
