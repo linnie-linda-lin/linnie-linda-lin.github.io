@@ -1129,6 +1129,11 @@ iframe.caseImage {
   .csSplit > .csFigure {
     order: -1;
   }
+
+  /* Image on the right instead, where the split has this modifier */
+  .csSplit--imageRight > .csFigure {
+    order: 0;
+  }
 }
 
 /* --- Text and image in two columns --- */
